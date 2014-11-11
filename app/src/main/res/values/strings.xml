@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Intentio</string>
+    <string name="hello_world">Chhavi\'s nightmare(creating GUI) starts from here...</string>
+    <string name="action_settings">Settings</string>
+
+</resources>
