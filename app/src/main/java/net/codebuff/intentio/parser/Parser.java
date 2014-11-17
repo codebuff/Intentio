@@ -1,4 +1,4 @@
-package net.codebuff.intentio;
+package net.codebuff.intentio.parser;
 
 import android.content.Context;
 import android.os.Environment;
@@ -27,7 +27,7 @@ public class Parser {
         this.context = context;
     }
 
-    Parser(){
+   public Parser(){
 
     }
 
