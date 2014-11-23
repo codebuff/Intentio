@@ -17,6 +17,9 @@ import java.io.InputStream;
 
 /**
  * Created by deepankar on 11/11/14.
+ *
+ * this class opens the file containing data and parses it and then hands the data over to
+ * datacurator
  */
 public class Parser {
     private Context context = null;
@@ -31,14 +34,14 @@ public class Parser {
 
     }
 
-    // following methods shows a giant middle finger, everytime somene does careless implementation,be carefull
+    // following methods shows a giant middle finger, everytime someone does careless
+    // implementation,be carefull
     public File open_file(){
         // the file will be hardcoded in some way later
         File dir = Environment.getExternalStorageDirectory(); // dangerous implementation but serves practical purpose
        // File dir = context.getFilesDir(); // maybe we can switch to this later.
         Log.i("external storage diretory", dir.getPath());
         excel = new File(dir, "test.xls");
-
         if(excel.isFile()) Log.i("file","file opened");
         return excel;
     }
@@ -46,6 +49,7 @@ public class Parser {
     public String parse_excel() throws IOException {
         HSSFWorkbook wb = null;
         String content = "";
+        // find and open the xl file.
         excel = open_file();
         InputStream inputStream = new FileInputStream(excel);
 

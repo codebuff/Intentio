@@ -1,9 +1,12 @@
 package net.codebuff.intentio;
 
+import android.app.AlarmManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,11 +22,13 @@ import java.io.IOException;
 public class MainActivity extends ActionBarActivity {
     Button parse_button ;
     TextView xl_data;
+    Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PreferenceManager.setDefaultValues(this, R.xml.pref_general, false); // saving the default preferences for the first time
         setContentView(R.layout.activity_main);
+        context = this.getBaseContext();
     }
 
     @Override
@@ -33,14 +38,16 @@ public class MainActivity extends ActionBarActivity {
         parse_button = (Button)findViewById(R.id.parse_button);
         xl_data = (TextView)findViewById(R.id.data);
         parse_button.setOnClickListener(new Button.OnClickListener(){
-
             @Override
             public void onClick(View v) {
-                try {
+                AlarmManager alarm = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+                Log.i("alarm",alarm.toString()) ;
+               /* try {
+
                     xl_data.setText(parser.parse_excel());
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
         });
 

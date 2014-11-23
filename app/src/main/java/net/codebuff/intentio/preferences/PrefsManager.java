@@ -6,11 +6,13 @@ import android.preference.PreferenceManager;
 
 /**
  * Created by deepankar on 18/11/14.
+ *
+ * the methods available in this class are called from all classes except settingsactvity class
  */
-public class Pref {
+public class PrefsManager {
     Context context;
 
-    public Pref(Context context){
+    public PrefsManager(Context context){
         this.context = context ;
     }
 
