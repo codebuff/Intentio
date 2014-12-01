@@ -13,6 +13,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
+import org.apache.log4j.chainsaw.Main;
+
 
 /**
  * Helper class for showing and canceling centre
@@ -25,7 +27,7 @@ public class NotificationCentre {
     /**
      * The unique identifier for this type of notification.
      */
-    private static final String NOTIFICATION_TAG = "Centre";
+    private static final String NOTIFICATION_TAG = "Intentio";
 
     /**
      * Shows the notification, or updates a previously shown notification of
@@ -43,7 +45,7 @@ public class NotificationCentre {
      * @see #cancel(Context)
      */
     public static void notify(final Context context,
-                              final String exampleString, final int number) {
+                              final String message, final int number) {
         final Resources res = context.getResources();
 
         // This image is used as the notification's large icon (thumbnail).
@@ -51,11 +53,9 @@ public class NotificationCentre {
         final Bitmap picture = BitmapFactory.decodeResource(res, R.drawable.example_picture);
 
 
-        final String ticker = exampleString;
-        final String title = res.getString(
-                R.string.centre_notification_title_template, exampleString);
-        final String text = res.getString(
-                R.string.centre_notification_placeholder_text_template, exampleString);
+        final String ticker = message;
+        final String title = "title";
+        final String text = "text";
 
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
 
@@ -77,10 +77,10 @@ public class NotificationCentre {
 
                         // Provide a large icon, shown with the notification in the
                         // notification drawer on devices running Android 3.0 or later.
-                .setLargeIcon(picture)
+                //.setLargeIcon(picture)
 
                         // Set ticker text (preview) information for this notification.
-                .setTicker(ticker)
+               // .setTicker(ticker)
 
                         // Show a number. This is useful when stacking notifications of
                         // a single type.
@@ -101,22 +101,21 @@ public class NotificationCentre {
                         PendingIntent.getActivity(
                                 context,
                                 0,
-                                new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com")),
-                                PendingIntent.FLAG_UPDATE_CURRENT))
+                                new Intent(context,net.codebuff.intentio.MainActivity.class),PendingIntent.FLAG_UPDATE_CURRENT))
 
-                        // Show expanded text content on devices running Android 4.1 or
-                        // later.
-                .setStyle(new NotificationCompat.BigTextStyle()
-                        .bigText(text)
-                        .setBigContentTitle(title)
-                        .setSummaryText("Dummy summary text"))
+                                // Show expanded text content on devices running Android 4.1 or
+                                // later
+                                .setStyle(new NotificationCompat.BigTextStyle()
+                                        .bigText(text)
+                                        .setBigContentTitle(title))
+                                        // .setSummaryText("Dummy summary text"))
 
-                        // Example additional actions for this notification. These will
-                        // only show on devices running Android 4.1 or later, so you
-                        // should ensure that the activity in this notification's
-                        // content intent provides access to the same actions in
-                        // another way.
-                .addAction(
+                                        // Example additional actions for this notification. These will
+                                        // only show on devices running Android 4.1 or later, so you
+                                        // should ensure that the activity in this notification's
+                                        // content intent provides access to the same actions in
+                                        // another way.
+              /*  .addAction(
                         R.drawable.ic_action_stat_share,
                         res.getString(R.string.action_share),
                         PendingIntent.getActivity(
@@ -129,10 +128,10 @@ public class NotificationCentre {
                 .addAction(
                         R.drawable.ic_action_stat_reply,
                         res.getString(R.string.action_reply),
-                        null)
+                        null)*/
 
-                        // Automatically dismiss the notification when it is touched.
-                .setAutoCancel(true);
+                                        // Automatically dismiss the notification when it is touched.
+                                .setAutoCancel(true);
 
         notify(context, builder.build());
     }
