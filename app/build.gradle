@@ -27,6 +27,8 @@ dependencies {
 
 
 
+
+
 android {
 	packagingOptions {
 		exclude 'META-INF/LICENSE.txt'

@@ -36,6 +36,15 @@
             android:enabled="true"
             android:exported="true" >
         </receiver>
+
+        <activity
+            android:name="net.codebuff.intentio.Parser_demo"
+            android:label="@string/title_activity_parser" >
+        </activity>
+        <activity
+            android:name="net.codebuff.intentio.demo_2"
+            android:label="@string/title_activity_demo_2" >
+        </activity>
     </application>
 
 </manifest>
