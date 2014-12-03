@@ -1,9 +1,10 @@
 package net.codebuff.intentio.preferences;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import java.util.Map;
 
 /**
  * Created by deepankar on 18/11/14.
@@ -23,17 +24,49 @@ public class PrefsManager {
         return prefs.getBoolean("reset",true);
     }
 
+   public void save_slots(String slot_number,String slot_data){
+       /*System.out.println(day);
+        System.out.println(slot);
+        System.out.println(data);*/
+
+        SharedPreferences slots = this.context.getSharedPreferences("slots",
+                Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = slots.edit();
+        editor.putString(slot_number,slot_data);
+        //editor.commit();
+        editor.apply();
+    }
+
+
+
+    public String get_slots(){
+        SharedPreferences schd = context.getSharedPreferences("slots",
+                Context.MODE_PRIVATE);
+        return schd.getString("slots","");
+    }
     public void save_schedule(String day,String slot,String data){
-        SharedPreferences schd = context.getSharedPreferences(day + "schedule",
+       /*System.out.println(day);
+        System.out.println(slot);
+        System.out.println(data);*/
+
+       SharedPreferences schd = this.context.getSharedPreferences(day + "_schedule",
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = schd.edit();
         editor.putString(slot,data);
+        //editor.commit();
+        editor.apply();
     }
 
-    public String get_schedule(String day,String slot){
-        SharedPreferences schd = context.getSharedPreferences(day + "schedule",
+    public String get_schedule_slot(String day,String slot){
+        SharedPreferences schd = context.getSharedPreferences(day + "_schedule",
                 Context.MODE_PRIVATE);
         return schd.getString(slot,"");
+    }
+
+    public Map get_schedule_day(String day){
+        SharedPreferences schd = context.getSharedPreferences(day + "_schedule",
+                Context.MODE_PRIVATE);
+        return schd.getAll();
     }
 
     public void save_alarm_schedule(String day,String slot,boolean pref){
@@ -41,14 +74,29 @@ public class PrefsManager {
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = schd.edit();
         editor.putBoolean(slot,pref);
+        //editor.commit();
+        editor.apply();
     }
 
     public void update_pref_settings(String key ,String value) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(key ,value);
+       // editor.commit();
+        editor.apply();
 
     }
+
+    public void update_pref_settings(String key ,boolean value) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean(key ,value);
+        //editor.commit();
+        editor.apply();
+
+    }
+
+
 
     public void update_pref(String key ,String value){
 

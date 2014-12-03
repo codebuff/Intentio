@@ -9,18 +9,18 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Build;
-import android.support.v4.app.NotificationCompat;
 
-import org.apache.log4j.chainsaw.Main;
+import net.codebuff.intentio.helpers.Utilities;
+
+import java.util.Calendar;
 
 
 /**
  * Helper class for showing and canceling centre
  * notifications.
  * <p/>
- * This class makes heavy use of the {@link NotificationCompat.Builder} helper
+ * This class makes heavy use of the {@link Notification.Builder} helper
  * class to create notifications in a backward-compatible way.
  */
 public class NotificationCentre {
@@ -44,20 +44,20 @@ public class NotificationCentre {
      *
      * @see #cancel(Context)
      */
-    public static void notify(final Context context,
-                              final String message, final int number) {
+    public static void notify(final Context context, final int number) {
         final Resources res = context.getResources();
+        Calendar cal = Calendar.getInstance();
 
         // This image is used as the notification's large icon (thumbnail).
         // TODO: Remove this if your notification has no relevant thumbnail.
         final Bitmap picture = BitmapFactory.decodeResource(res, R.drawable.example_picture);
 
 
-        final String ticker = message;
-        final String title = "title";
-        final String text = "text";
+        final String ticker = "Intentio";
+        final String title = "class details";
+        final String text = "(dummy schedule details) of hour " + cal.get(Calendar.HOUR_OF_DAY) + "\n of day " + Utilities.get_day(); //this message will change contextually
 
-        final NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
+        final Notification.Builder builder = new Notification.Builder(context)
 
                 // Set appropriate defaults for the notification light, sound,
                 // and vibration.
@@ -73,7 +73,7 @@ public class NotificationCentre {
 
                         // Use a default priority (recognized on devices running Android
                         // 4.1 or later)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                .setPriority(Notification.PRIORITY_MAX)
 
                         // Provide a large icon, shown with the notification in the
                         // notification drawer on devices running Android 3.0 or later.
@@ -105,7 +105,7 @@ public class NotificationCentre {
 
                                 // Show expanded text content on devices running Android 4.1 or
                                 // later
-                                .setStyle(new NotificationCompat.BigTextStyle()
+                                .setStyle(new Notification.BigTextStyle()
                                         .bigText(text)
                                         .setBigContentTitle(title))
                                         // .setSummaryText("Dummy summary text"))
@@ -149,7 +149,7 @@ public class NotificationCentre {
 
     /**
      * Cancels any notifications of this type previously shown using
-     * {@link #notify(Context, String, int)}.
+     * {@link #notify(Context,  int)}.
      */
     @TargetApi(Build.VERSION_CODES.ECLAIR)
     public static void cancel(final Context context) {

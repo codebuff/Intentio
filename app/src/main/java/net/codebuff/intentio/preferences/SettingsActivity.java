@@ -1,8 +1,6 @@
 package net.codebuff.intentio.preferences;
 
 import android.annotation.TargetApi;
-
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -23,8 +21,6 @@ import android.util.Log;
 
 import net.codebuff.intentio.R;
 
-import java.io.File;
-import java.net.URI;
 import java.util.List;
 
 /**

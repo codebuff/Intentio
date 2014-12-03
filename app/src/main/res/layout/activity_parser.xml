@@ -15,19 +15,18 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="click to go to second demo screen"
-        android:id="@+id/demo_2"
-        android:textColor="@color/primary_material_dark"
+        android:text="click to go to demo screen"
+        android:id="@+id/demo_button"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:enabled="true"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="click to Parse and see the contents of file"
         android:id="@+id/parse_button"
-        android:textColor="@color/primary_material_dark"
-        android:layout_below="@+id/demo_2"
+        android:layout_below="@+id/demo_button"
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView"/>
 

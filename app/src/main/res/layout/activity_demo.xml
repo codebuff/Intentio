@@ -6,7 +6,7 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
-                tools:context="net.codebuff.intentio.demo_2">
+                tools:context="net.codebuff.intentio.demo">
 
     <TextView
         android:text="@string/hello_world"
@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/option1_today"
-        android:id="@+id/button"
+        android:id="@+id/day_button"
         android:layout_marginTop="173dp"
         android:layout_toStartOf="@+id/textView3"
         android:layout_toLeftOf="@+id/textView3"
@@ -32,11 +32,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/option2_week"
-        android:id="@+id/button2"
-        android:layout_alignTop="@+id/button"
+        android:id="@+id/week_button"
+        android:layout_alignTop="@+id/day_button"
         android:layout_toRightOf="@+id/textView3"
         android:layout_toEndOf="@+id/textView3"
-        android:layout_alignBottom="@+id/button"
+        android:layout_alignBottom="@+id/day_button"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
@@ -44,8 +44,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/option3_alarm"
-        android:id="@+id/button3"
-        android:layout_below="@+id/button"
+        android:id="@+id/alarm_button"
+        android:layout_below="@+id/day_button"
         android:layout_toLeftOf="@+id/textView3"
         android:layout_toStartOf="@+id/textView3"
         android:layout_marginTop="80dp"
@@ -56,10 +56,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/option4_notifi"
-        android:id="@+id/button4"
-        android:layout_alignBottom="@+id/button3"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignStart="@+id/button2"
+        android:id="@+id/notification_button"
+        android:layout_alignBottom="@+id/alarm_button"
+        android:layout_alignLeft="@+id/week_button"
+        android:layout_alignStart="@+id/week_button"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 

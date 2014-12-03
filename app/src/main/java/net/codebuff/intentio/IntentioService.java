@@ -28,7 +28,7 @@ public class IntentioService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
+        schedule_next_alarm();
 
         return Service.START_NOT_STICKY;
     }
@@ -50,7 +50,7 @@ public class IntentioService extends Service {
                 Log.i("time", cal.getTime().toString());*/
         alarm_manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context ,IntentioReceiver.class);
-        alarm_intent = PendingIntent.getBroadcast(context, 0, intent,PendingIntent.FLAG_ONE_SHOT);//FLAG_UPDATE_CURRENT
+        alarm_intent = PendingIntent.getBroadcast(context, 0, intent,PendingIntent.FLAG_UPDATE_CURRENT);//FLAG_UPDATE_CURRENT
         alarm_manager.set(AlarmManager.RTC_WAKEUP,cal.getTimeInMillis()+10000,alarm_intent);
         Toast.makeText(getApplicationContext(), "alarm scheduled", Toast.LENGTH_LONG).show();
         stopSelf();

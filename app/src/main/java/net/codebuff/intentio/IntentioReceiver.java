@@ -17,10 +17,13 @@ public class IntentioReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         // TODO: This method is called when the BroadcastReceiver is receiving
         // an Intent broadcast.
-        Intent service_intent = new Intent(context,IntentioService.class);
+        /*Intent service_intent = new Intent(context,IntentioService.class);
         service_intent.putExtra("method","method");// this has to be decided by the scenario
         context.startService(service_intent);
-        Log.i("alarm","triggered");
+        Log.i("alarm","triggered");*/
+        NotificationCentre.notify(context,0);
+
+        Toast.makeText(context, "triggered", Toast.LENGTH_LONG).show();
     }
 
 }

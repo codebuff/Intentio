@@ -13,7 +13,9 @@
     <string name="option3_alarm">Set Next Alarm</string>
     <string name="option4_notifi">Notifications</string>
     <string name="text_main">Hi! here\'s what you can do.</string>
-    <string name="title_activity_parser">Parser</string>
-    <string name="title_activity_demo_2">demo_2</string>
+    <string name="title_activity_parser">Intentio (Parser)</string>
+    <string name="title_activity_demo_2">Intentio (demo)</string>
+    <string name="title_activity_today">Today\'s Schedule</string>
+    <string name="title_activity_week">Week\'s Schedule</string>
 
 </resources>

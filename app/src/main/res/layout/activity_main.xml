@@ -17,8 +17,7 @@
         android:text="click to Parse and see the contents of file"
         android:id="@+id/parse_button"
         android:layout_below="@+id/textView2"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/primary_material_dark" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
