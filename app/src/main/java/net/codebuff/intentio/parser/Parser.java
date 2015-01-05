@@ -57,10 +57,10 @@ public class Parser {
         //File dir = context.getFilesDir(); // maybe we can switch to this later.
         //Log.i("external storage diretory", dir.getPath());
         //excel = new File(dir, "test.xls");
-        if(uri.getLastPathSegment().contains("xls")){
-            excel = new File(uri.getPath());
-        } else if(uri.getLastPathSegment().contains("xlxs")){
+        if(uri.getLastPathSegment().contains(".xlsx")){
             excel = null;
+        } else if(uri.getLastPathSegment().contains(".xls")){
+            excel = new File(uri.getPath());
         } else {
             excel = null;
         }
