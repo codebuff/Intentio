@@ -69,7 +69,7 @@ public class Parser {
         // find and open the xl file.
         excel = open_file();
         if(!excel.isFile()) {
-            Toast.makeText(context,"File not found, copy the file named test.xlx in root directory", Toast.LENGTH_LONG).show();
+            Toast.makeText(context,"Incorrect or no File not found", Toast.LENGTH_LONG).show();
             return "file not found";
         }else {
             prefs = new PrefsManager(context);

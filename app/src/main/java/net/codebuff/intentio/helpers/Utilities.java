@@ -15,7 +15,7 @@ public class Utilities {
     public static String get_day_name(int num){
         switch(num){
             case 6 : return "monday";
-            case 7 : return "tueday";
+            case 7 : return "tuesday";
             case 8 : return "wednesday";
             case 9 : return "thursday";
             case 10 : return "friday";
