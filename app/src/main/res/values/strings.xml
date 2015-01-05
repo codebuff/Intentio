@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Intentio</string>
+    <string name="title_activity_main">Intentio</string>
+    <string name="title_activity_first_run">first_run</string>
+
+    <!-- strings for main activitu spinner -->
+    <string name="title_day1">Sunday\'s Schedule</string>
+    <string name="title_day2">Monday\'s Schedule</string>
+    <string name="title_day3">Tuesday\'s Schedule</string>
+    <string name="title_day4">Wednesday\'s Schedule</string>
+    <string name="title_day5">Thursday\'s Schedule</string>
+    <string name="title_day6">Friday\'s Schedule</string>
+    <string name="title_day7">Saturday\'s Schedule</string>
+
+
+
+    <string name="fr_cardview_main">Please Choose the excel file from which you want to import the timetable</string>
+    <string name="fr_help">help content</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="first_run">Intentio Set Up</string>
+
+
+</resources>
