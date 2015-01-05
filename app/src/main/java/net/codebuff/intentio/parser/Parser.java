@@ -49,7 +49,7 @@ public class Parser {
     }
 
     // following methods shows a giant middle finger, everytime someone does careless implementation,be careful
-    public File open_file(){
+    public void open_file(){
 
         // the file will be hardcoded in some way later
         //File dir = Environment.getExternalStorageDirectory(); // dangerous implementation but serves practical purpose
@@ -57,11 +57,15 @@ public class Parser {
         //File dir = context.getFilesDir(); // maybe we can switch to this later.
         //Log.i("external storage diretory", dir.getPath());
         //excel = new File(dir, "test.xls");
-        if(uri.getLastPathSegment().contains("xls"))
-        excel = new File(uri.getPath());
+        if(uri.getLastPathSegment().contains("xls")){
+            excel = new File(uri.getPath());
+        } else if(uri.getLastPathSegment().contains("xlxs")){
+            excel = null;
+        } else {
+            excel = null;
+        }
 
-            Log.i("file","file opened");
-        return excel;
+
     }
 
     public String parse_excel() throws IOException {
@@ -76,9 +80,10 @@ public class Parser {
         Calendar calendar = Calendar.getInstance();
         Log.e("day",calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()));
         // find and open the xl file.
-        excel = open_file();
-        if(!excel.isFile()) {
-            Toast.makeText(context,"File not found, copy the file named test.xlx in root directory", Toast.LENGTH_LONG).show();
+        open_file();
+
+        if((excel == null) || (!excel.isFile())) {
+            Toast.makeText(context,"File not found,or incorrect file provided", Toast.LENGTH_LONG).show();
             return "file not found";
         }else {
             prefs = new PrefsManager(context);

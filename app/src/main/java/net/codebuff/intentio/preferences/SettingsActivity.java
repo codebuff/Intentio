@@ -125,13 +125,17 @@ public class SettingsActivity extends PreferenceActivity {
             String type = intent.getType();
 
             Log.i("file choosen","Pick completed: "+ uri + " "+type);
-            if (uri != null)
-            {
+            if (uri != null){
+
                 String path = uri.toString();
-                findPreference("xls_file_path").setSummary(path);
+                findPreference("xls_file_path").setSummary(uri.getLastPathSegment());
                 try {
-                    new Parser(getApplicationContext(),uri).parse_excel();
-                } catch (IOException e) {
+                    Parser parser = new Parser(getApplicationContext(), uri);
+                    String xls_content = parser.parse_excel();
+                    if(!xls_content.equals("file not found")) {
+                        app.update_pref_settings("reset",false);
+                        //lets see if we need to start the main activity here or not.
+                    }} catch (IOException e) {
                     e.printStackTrace();
                 }
                 Log.i("path",path);
