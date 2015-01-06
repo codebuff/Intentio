@@ -43,10 +43,12 @@ public class week extends ActionBarActivity {
         String sl = user.get_slots().replace("[","");
         sl = sl.replace("]","");
         String[] slots = sl.split(",");
+        slots = Utilities.sort_slots(slots);
         for(int j = 6 ;j < 13;j++){
             day = Utilities.get_day_name(j);
             schd = schd + "\n    " + day + "    \n";
             for(int i = 0 ; i<slots.length ;i++){
+                //System.out.println(slots[i]);
                 schd = schd + slots[i].trim() + " : " + user.get_schedule_slot(day,slots[i].trim()) + "\n";
             }
         }

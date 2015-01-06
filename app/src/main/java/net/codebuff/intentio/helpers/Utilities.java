@@ -65,4 +65,30 @@ public class Utilities {
         Calendar calendar = Calendar.getInstance();
         return calendar.get(Calendar.DAY_OF_WEEK);
     }
+
+    public static String[] sort_slots(String slots[]) {
+        int current;
+        int location;
+        String temp;
+        int j = 0;
+        while (j < slots.length) {
+            location = -1;
+            current = 25;
+            for (int i = j; i < slots.length; i++) {
+                String slot_hour[] = slots[i].split(":");
+                if (Integer.parseInt(slot_hour[0].trim()) < current) {
+                    current = Integer.parseInt(slot_hour[0].trim());
+                    location = i;
+                }
+            }
+            if (location != -1) {
+                temp = slots[j];
+                slots[j] = slots[location];
+                slots[location] = temp;
+            }
+            j++;
+
+        }
+        return slots;
+    }
 }
