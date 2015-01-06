@@ -6,4 +6,8 @@
           android:title="@string/action_settings"
           android:orderInCategory="100"
           app:showAsAction="never"/>
+    <item android:id="@+id/action_week"
+        android:title="@string/title_activity_week"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
 </menu>

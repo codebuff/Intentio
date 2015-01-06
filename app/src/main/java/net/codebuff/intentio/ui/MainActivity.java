@@ -135,6 +135,10 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
             startActivity(new Intent(this,SettingsActivity.class));
             return true;
         }
+        if (id == R.id.action_week) {
+            startActivity(new Intent(this,week.class));
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }

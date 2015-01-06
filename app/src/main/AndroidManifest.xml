@@ -6,12 +6,11 @@
     <uses-permission android:name="Android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".ui.MainActivity"
             android:label="@string/title_activity_main" >
@@ -24,11 +23,15 @@
         <activity
             android:name=".ui.first_run"
             android:label="@string/title_activity_first_run"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".preferences.SettingsActivity"
             android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name=".ui.week"
+            android:label="@string/title_activity_week" >
         </activity>
     </application>
 

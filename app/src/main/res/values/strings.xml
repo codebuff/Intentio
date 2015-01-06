@@ -13,15 +13,11 @@
     <string name="title_day5">Thursday\'s Schedule</string>
     <string name="title_day6">Friday\'s Schedule</string>
     <string name="title_day7">Saturday\'s Schedule</string>
-
-
-
     <string name="fr_cardview_main">Please Choose the excel file from which you want to import the timetable</string>
     <string name="fr_help">help content</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
     <string name="first_run">Intentio Set Up</string>
-
+    <string name="title_activity_week">week (ascii dump)</string>
 
 </resources>

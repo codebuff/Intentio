@@ -18,6 +18,7 @@ import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
 import android.text.TextUtils;
 import android.util.Log;
+import android.widget.Toast;
 
 import net.codebuff.intentio.R;
 import net.codebuff.intentio.parser.Parser;
@@ -135,6 +136,7 @@ public class SettingsActivity extends PreferenceActivity {
                     if(!xls_content.equals("file not found")) {
                         app.update_pref_settings("reset",false);
                         //lets see if we need to start the main activity here or not.
+                        Toast.makeText(getApplicationContext(), "File successfully parsed and data saved", Toast.LENGTH_LONG).show();
                     }} catch (IOException e) {
                     e.printStackTrace();
                 }

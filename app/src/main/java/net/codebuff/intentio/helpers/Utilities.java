@@ -27,7 +27,31 @@ public class Utilities {
 
         }
     }
-
+    public static String get_day_name(String cell_data){
+        cell_data = cell_data.toLowerCase();
+        if(cell_data.contains("mon")){
+            return "monday";
+        }
+        if(cell_data.contains("tue")){
+            return "tuesday";
+        }
+        if(cell_data.contains("wed")){
+            return "wednesday";
+        }
+        if(cell_data.contains("thu")){
+            return "thursday";
+        }
+        if(cell_data.contains("fri")){
+            return "friday";
+        }
+        if(cell_data.contains("sat")){
+            return "saturday";
+        }
+        if(cell_data.contains("sun")){
+            return "sunday";
+        }
+        return "invalid";
+    }
     public static String get_day(){
         String day;
         Calendar calendar = Calendar.getInstance();
