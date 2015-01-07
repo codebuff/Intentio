@@ -3,7 +3,7 @@
 
     <string name="app_name">Intentio</string>
     <string name="title_activity_main">Intentio</string>
-    <string name="title_activity_first_run">first_run</string>
+    <string name="title_activity_first_run">Intentio</string>
 
     <!-- strings for main activitu spinner -->
     <string name="title_day1">Sunday\'s Schedule</string>

@@ -11,14 +11,13 @@ import android.widget.TextView;
 
 import net.codebuff.intentio.R;
 import net.codebuff.intentio.helpers.Utilities;
-
-import org.w3c.dom.Text;
+import net.codebuff.intentio.preferences.PrefsManager;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class daily_schedule extends Fragment {
-    int day_number = 2;
+
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -46,20 +45,42 @@ public class daily_schedule extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
-       System.out.println(getArguments().getInt(DAY_NUMBER));
         LinearLayout list = (LinearLayout)rootView.findViewById(R.id.daily_schedule_list);
-        CardView slot;
-        TextView txt;
-        slot = (CardView)inflater.inflate(R.layout.daily_schedule_slot_view, container, false);
-
-        txt = (TextView) slot.findViewById(R.id.daily_schedule_text);
-        txt.setText(Utilities.get_day());
-
-        list.addView(slot);
-        slot = (CardView)inflater.inflate(R.layout.daily_schedule_slot_view, container, false);
-         txt = (TextView) slot.findViewById(R.id.daily_schedule_text);
-        txt.setText("sunday");
-        list.addView(slot);
+        populate_schedule(inflater,container,rootView,getArguments().getInt(DAY_NUMBER),list);
+       /* populate_schedule(inflater,container,rootView,getArguments().getInt(DAY_NUMBER),list);
+        populate_schedule(inflater,container,rootView,getArguments().getInt(DAY_NUMBER),list);
+        populate_schedule(inflater,container,rootView,getArguments().getInt(DAY_NUMBER),list);
+        populate_schedule(inflater,container,rootView,getArguments().getInt(DAY_NUMBER),list);
+        populate_schedule(inflater,container,rootView,getArguments().getInt(DAY_NUMBER),list);
+        populate_schedule(inflater,container,rootView,getArguments().getInt(DAY_NUMBER),list);*/
         return rootView;
+    }
+
+    public void populate_schedule(LayoutInflater inflater,ViewGroup container,View view,int day_number,LinearLayout list){
+        PrefsManager user = new PrefsManager(getActivity().getApplicationContext());
+        String day = Utilities.get_day_name(day_number);
+        String sl = user.get_slots().replace("[","").replace("]","");
+        String[] slots = sl.split(",");
+        slots = Utilities.sort_slots(slots);
+        CardView slot;
+        TextView slot_time;
+        TextView slot_info;
+
+        for(int i = 0 ; i<slots.length ;i++){
+            //System.out.println(slots[i]);
+            slot = (CardView)inflater.inflate(R.layout.daily_schedule_slot_view, container, false);
+            slot_time = (TextView) slot.findViewById(R.id.slot_time);
+            slot_time.setText(slots[i].trim());
+            slot_info = (TextView)slot.findViewById(R.id.slot_info);
+            slot_info.setText(user.get_schedule_slot(day,slots[i].trim()));
+            list.addView(slot);
+           // schd = schd + slots[i].trim() + " : " + user.get_schedule_slot(day,slots[i].trim()) + "\n";
+        }
+       /* slot = (CardView)inflater.inflate(R.layout.daily_schedule_slot_view, container, false);
+        slot_time = (TextView) slot.findViewById(R.id.slot_time);
+        slot_time.setText(Utilities.get_day_name(day_number));
+        slot_info = (TextView)slot.findViewById(R.id.slot_info);
+
+        list.addView(slot);*/
     }
 }

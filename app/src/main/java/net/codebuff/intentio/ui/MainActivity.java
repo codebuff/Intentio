@@ -58,7 +58,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
                 // Specify a SpinnerAdapter to populate the dropdown list.
                 new ArrayAdapter<String>(
                         actionBar.getThemedContext(),
-                        android.R.layout.simple_list_item_1,
+                        android.R.layout.simple_list_item_1 ,
                         android.R.id.text1,
                         new String[]{
                                 getString(R.string.title_day1),

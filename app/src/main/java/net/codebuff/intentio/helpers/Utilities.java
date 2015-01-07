@@ -14,15 +14,16 @@ import java.util.Locale;
  */
 public class Utilities {
 
-    public static String get_day_name(int num){
-        switch(num){
-            case 6 : return "monday";
-            case 7 : return "tuesday";
-            case 8 : return "wednesday";
-            case 9 : return "thursday";
-            case 10 : return "friday";
-            case 11 : return "saturday";
-            case 12 : return "sunday";
+    public static String get_day_name(int day_number){
+        switch(day_number){
+            case 1 : return "sunday";
+            case 2 : return "monday";
+            case 3 : return "tuesday";
+            case 4 : return "wednesday";
+            case 5 : return "thursday";
+            case 6 : return "friday";
+            case 7 : return "saturday";
+
             default : return "invalid";
 
         }

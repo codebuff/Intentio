@@ -37,7 +37,7 @@
         android:layout_margin="@dimen/margin_small"
         android:elegantTextHeight="false"
         android:elevation="100dp"
-        card_view:cardBackgroundColor="@color/cardview_initial_background"
+         card_view:cardBackgroundColor="@color/cardview_initial_background"
         card_view:cardCornerRadius="8dp">
 
         <LinearLayout
@@ -67,13 +67,14 @@
                 style="@style/AppTheme"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/accent"
+                android:background="@color/primary"
                 android:clickable="true"
                 android:elegantTextHeight="true"
                 android:singleLine="true"
                 android:text="Choose File"
-                android:textStyle="bold|italic" />
+                android:textStyle="bold|italic"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/primary_text_default_material_dark" />
 
 
         </LinearLayout>
@@ -111,11 +112,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@color/primary_dark"
+        android:background="@color/primary"
         android:clickable="true"
         android:elevation="120dp"
         android:text="Done"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="@color/primary_text_default_material_dark" />
 
 
 </RelativeLayout>

@@ -44,7 +44,7 @@ public class week extends ActionBarActivity {
         sl = sl.replace("]","");
         String[] slots = sl.split(",");
         slots = Utilities.sort_slots(slots);
-        for(int j = 6 ;j < 13;j++){
+        for(int j = 1 ;j < 8;j++){
             day = Utilities.get_day_name(j);
             schd = schd + "\n    " + day + "    \n";
             for(int i = 0 ; i<slots.length ;i++){
