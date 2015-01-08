@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import net.codebuff.intentio.R;
+import net.codebuff.intentio.helpers.Constants;
 import net.codebuff.intentio.helpers.Utilities;
 import net.codebuff.intentio.preferences.PrefsManager;
 import net.codebuff.intentio.preferences.SettingsActivity;
@@ -25,6 +26,7 @@ import net.codebuff.intentio.preferences.SettingsActivity;
 public class MainActivity extends ActionBarActivity implements ActionBar.OnNavigationListener {
     Context context;
     PrefsManager app ;
+     ActionBar actionBar;
     /**
      * The serialization (saved instance state) Bundle key representing the
      * current dropdown position.
@@ -49,7 +51,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
         setContentView(R.layout.activity_main);
 
         // Set up the action bar to show a dropdown list.
-        final ActionBar actionBar = getSupportActionBar();
+         actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
@@ -83,6 +85,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
             // open the parser activity
             startActivity(new Intent(this , first_run.class));
             finish();
+        }
+        if(Constants.schecdule_updated){
+            actionBar.setSelectedNavigationItem(2);
+            actionBar.setSelectedNavigationItem(Utilities.get_day_number()-1);
+            Constants.schecdule_updated = false;
         }
     }
 

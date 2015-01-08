@@ -21,6 +21,8 @@ import android.util.Log;
 import android.widget.Toast;
 
 import net.codebuff.intentio.R;
+import net.codebuff.intentio.helpers.Constants;
+import net.codebuff.intentio.helpers.Utilities;
 import net.codebuff.intentio.parser.Parser;
 
 import java.io.IOException;
@@ -136,6 +138,7 @@ public class SettingsActivity extends PreferenceActivity {
                     if(!xls_content.equals("file not found")) {
                         app.update_pref_settings("reset",false);
                         //lets see if we need to start the main activity here or not.
+                        Constants.schecdule_updated = true;
                         Toast.makeText(getApplicationContext(), "File successfully parsed and data saved", Toast.LENGTH_LONG).show();
                     }} catch (IOException e) {
                     e.printStackTrace();

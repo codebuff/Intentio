@@ -9,6 +9,7 @@ public class Constants {
     public static final int notify_and_schedule = 2;
     public static final int ring_alarm = 3 ;
     public static final String empty_slot = "nothing found";
+    public static boolean schecdule_updated = false;
 
 
 
