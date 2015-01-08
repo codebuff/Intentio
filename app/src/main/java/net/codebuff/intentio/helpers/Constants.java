@@ -10,6 +10,7 @@ public class Constants {
     public static final int ring_alarm = 3 ;
     public static final String empty_slot = "nothing found";
     public static boolean schecdule_updated = false;
+    public static int current_slot_number = -1;
 
 
 

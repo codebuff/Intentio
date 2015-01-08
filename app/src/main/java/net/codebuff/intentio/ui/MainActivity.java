@@ -23,6 +23,9 @@ import net.codebuff.intentio.helpers.Utilities;
 import net.codebuff.intentio.preferences.PrefsManager;
 import net.codebuff.intentio.preferences.SettingsActivity;
 
+import java.util.Calendar;
+import java.util.HashMap;
+
 public class MainActivity extends ActionBarActivity implements ActionBar.OnNavigationListener {
     Context context;
     PrefsManager app ;
@@ -160,6 +163,17 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
         return true;
     }
 
-
+    public void summarize(){
+        String current_slot_time;
+        HashMap<String, String> next_slot = new HashMap<String, String>();
+        Calendar  calendar = Calendar.getInstance();
+        String sl = app.get_slots().replace("[","");
+        sl = sl.replace("]","");
+        String[] slots = sl.split(",");
+        slots = Utilities.sort_slots(slots);
+        current_slot_time = Utilities.find_current_slot(slots);
+        app.get_schedule_slot(Utilities.get_day_name(calendar.get(Calendar.DAY_OF_WEEK)),current_slot_time.trim());
+        next_slot = Utilities.find_next_slot(app,slots);
+    }
 
 }
