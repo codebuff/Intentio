@@ -218,7 +218,7 @@ public class Parser {
                         if (schedule_found && !schedule_processed && slots_processed) {
 
                                 // Log.e("row no",Integer.toString(row.getRowNum()));
-                                if (cell_data == null || cell_data == "") {
+                                if (cell_data == null || cell_data.trim() == "") {
                                     cell_data = Constants.empty_slot;
                                 }
                                 if (slots.containsKey(cell.getColumnIndex()) && !day.equals("invalid")) {

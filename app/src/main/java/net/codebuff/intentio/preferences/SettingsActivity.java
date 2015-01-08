@@ -138,7 +138,8 @@ public class SettingsActivity extends PreferenceActivity {
                     if(!xls_content.equals("file not found")) {
                         app.update_pref_settings("reset",false);
                         //lets see if we need to start the main activity here or not.
-                        Constants.schecdule_updated = true;
+
+                        Constants.schedule_updated = true;
                         Toast.makeText(getApplicationContext(), "File successfully parsed and data saved", Toast.LENGTH_LONG).show();
                     }} catch (IOException e) {
                     e.printStackTrace();

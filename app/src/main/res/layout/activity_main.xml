@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="now : here goes the info of current class or nearest next class\n\nNext class"
-        android:id="@+id/textView"
+        android:id="@+id/summary"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textColor="@color/abc_primary_text_material_dark"
@@ -24,7 +24,7 @@
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/summary"
         android:layout_centerHorizontal="true"
         android:background="@android:color/background_light">
 

@@ -8,8 +8,8 @@ public class Constants {
     public static final int schedule_next_alarm = 1;
     public static final int notify_and_schedule = 2;
     public static final int ring_alarm = 3 ;
-    public static final String empty_slot = "nothing found";
-    public static boolean schecdule_updated = false;
+    public static final String empty_slot = "^ - ^";
+    public static boolean schedule_updated = false;
     public static int current_slot_number = -1;
 
 

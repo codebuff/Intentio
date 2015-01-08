@@ -98,7 +98,7 @@ public class Utilities {
 
     public static String find_current_slot(String[] slots) {
         Calendar calendar = Calendar.getInstance();
-        String slot = "not found";
+        String slot = "invalid";
 
         int slot_start_hour = -1;
         int slot_start_minute = -1;
@@ -136,7 +136,12 @@ public class Utilities {
 
     public static HashMap<String, String> find_next_slot(PrefsManager user,String[] slots){
         HashMap<String, String> next_slot = new HashMap<String, String>();
-        next_slot.put("found", "yes");
+        String day ;
+        String next_slot_info;
+        next_slot.put("day","invalid");
+        next_slot.put("next_slot_info","invalid");
+        next_slot.put("next_slot_time","invalid");
+        next_slot.put("day_number","-1");
         Calendar calendar = Calendar.getInstance();
         int[] day_number = new int[7];
         day_number[0] = calendar.get(Calendar.DAY_OF_WEEK);
@@ -145,6 +150,31 @@ public class Utilities {
                 day_number[i] = 1;
             } else {
                 day_number[i] = day_number[i - 1] + 1;
+            }
+        }
+
+        for(int i = Constants.current_slot_number + 1 ;i< slots.length;i++){
+            day = get_day_name(day_number[0]);
+            next_slot_info = user.get_schedule_slot(day,slots[i].trim());
+            if(next_slot_info != Constants.empty_slot){
+                next_slot.put("day","today");
+                next_slot.put("next_slot_info",next_slot_info);
+                next_slot.put("next_slot_time",slots[i]);
+                next_slot.put("day_number",Integer.toString(day_number[0]));
+                return next_slot;
+            }
+        }
+        for(int j = 0;j < day_number.length;j++){
+            day = get_day_name(day_number[j]);
+            for(int i = 0 ;i< slots.length;i++){
+                next_slot_info = user.get_schedule_slot(day,slots[i].trim());
+                if(next_slot_info != Constants.empty_slot){
+                    next_slot.put("day",get_day_name(day_number[j]));
+                    next_slot.put("next_slot_info",next_slot_info);
+                    next_slot.put("next_slot_time",slots[i]);
+                    next_slot.put("day_number",Integer.toString(day_number[j]));
+                    return next_slot;
+                }
             }
         }
 

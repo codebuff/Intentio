@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,13 +24,15 @@ import net.codebuff.intentio.helpers.Utilities;
 import net.codebuff.intentio.preferences.PrefsManager;
 import net.codebuff.intentio.preferences.SettingsActivity;
 
+import org.apache.poi.ss.formula.functions.Now;
+
 import java.util.Calendar;
 import java.util.HashMap;
 
 public class MainActivity extends ActionBarActivity implements ActionBar.OnNavigationListener {
     Context context;
     PrefsManager app ;
-     ActionBar actionBar;
+    TextView summary;
     /**
      * The serialization (saved instance state) Bundle key representing the
      * current dropdown position.
@@ -54,7 +57,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
         setContentView(R.layout.activity_main);
 
         // Set up the action bar to show a dropdown list.
-         actionBar = getSupportActionBar();
+       final ActionBar  actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
@@ -89,11 +92,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
             startActivity(new Intent(this , first_run.class));
             finish();
         }
-        if(Constants.schecdule_updated){
-            actionBar.setSelectedNavigationItem(2);
-            actionBar.setSelectedNavigationItem(Utilities.get_day_number()-1);
-            Constants.schecdule_updated = false;
+        if(Constants.schedule_updated){
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.daily_schedule_container, new daily_schedule().newInstance(Utilities.get_day_number()))
+                    .commit();
+            Constants.schedule_updated = false;
         }
+        summarize();
     }
 
     @Override
@@ -107,6 +112,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
            startActivity(new Intent(this , first_run.class));
             finish();
         }
+        summarize();
     }
 
     @Override
@@ -164,16 +170,33 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
     }
 
     public void summarize(){
+        String summary_text = "";
+        summary =(TextView)findViewById(R.id.summary);
         String current_slot_time;
+        String current_slot_info;
         HashMap<String, String> next_slot = new HashMap<String, String>();
         Calendar  calendar = Calendar.getInstance();
+
         String sl = app.get_slots().replace("[","");
         sl = sl.replace("]","");
         String[] slots = sl.split(",");
         slots = Utilities.sort_slots(slots);
+
         current_slot_time = Utilities.find_current_slot(slots);
-        app.get_schedule_slot(Utilities.get_day_name(calendar.get(Calendar.DAY_OF_WEEK)),current_slot_time.trim());
+
+        if(!current_slot_time.equals("invalid")) {
+            current_slot_info = app.get_schedule_slot(Utilities.get_day_name(calendar.get(Calendar.DAY_OF_WEEK)), current_slot_time.trim());
+            if (!current_slot_info.equals(Constants.empty_slot)) {
+                summary_text = "Now : " + current_slot_info + "\n";
+            }
+        }
+
         next_slot = Utilities.find_next_slot(app,slots);
+
+        summary_text = summary_text + "Next : " + next_slot.get("day") + " at " + next_slot.get("next_slot_time")+ "\n" +  next_slot.get("next_slot_info");
+
+
+        summary.setText(summary_text);
     }
 
 }
