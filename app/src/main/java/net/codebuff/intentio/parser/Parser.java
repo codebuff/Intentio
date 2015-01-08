@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
+import net.codebuff.intentio.helpers.Constants;
 import net.codebuff.intentio.helpers.Utilities;
 import net.codebuff.intentio.preferences.PrefsManager;
 
@@ -216,10 +217,9 @@ public class Parser {
 
                         if (schedule_found && !schedule_processed && slots_processed) {
 
-                            if (slots_found && 5 < row.getRowNum() && row.getRowNum() < 13) {
                                 // Log.e("row no",Integer.toString(row.getRowNum()));
                                 if (cell_data == null || cell_data == "") {
-                                    cell_data = "nothing found";
+                                    cell_data = Constants.empty_slot;
                                 }
                                 if (slots.containsKey(cell.getColumnIndex()) && !day.equals("invalid")) {
                                     prefs.save_schedule(day, slots.get(cell.getColumnIndex()), cell_data.trim());
@@ -228,9 +228,6 @@ public class Parser {
                                 if (last_day_row_found && (c == (cells - 1))) {
                                     schedule_processed = true;
                                 }
-
-
-                            }
                         }
                         content = content + "CELL col=" + cell.getColumnIndex() + " VALUE="
                                 + value + "\n";

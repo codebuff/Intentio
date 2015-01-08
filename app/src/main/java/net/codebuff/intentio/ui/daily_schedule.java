@@ -47,12 +47,6 @@ public class daily_schedule extends Fragment {
        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         LinearLayout list = (LinearLayout)rootView.findViewById(R.id.daily_schedule_list);
         populate_schedule(inflater,container,rootView,getArguments().getInt(DAY_NUMBER),list);
-       /* populate_schedule(inflater,container,rootView,getArguments().getInt(DAY_NUMBER),list);
-        populate_schedule(inflater,container,rootView,getArguments().getInt(DAY_NUMBER),list);
-        populate_schedule(inflater,container,rootView,getArguments().getInt(DAY_NUMBER),list);
-        populate_schedule(inflater,container,rootView,getArguments().getInt(DAY_NUMBER),list);
-        populate_schedule(inflater,container,rootView,getArguments().getInt(DAY_NUMBER),list);
-        populate_schedule(inflater,container,rootView,getArguments().getInt(DAY_NUMBER),list);*/
         return rootView;
     }
 
@@ -74,13 +68,6 @@ public class daily_schedule extends Fragment {
             slot_info = (TextView)slot.findViewById(R.id.slot_info);
             slot_info.setText(user.get_schedule_slot(day,slots[i].trim()));
             list.addView(slot);
-           // schd = schd + slots[i].trim() + " : " + user.get_schedule_slot(day,slots[i].trim()) + "\n";
         }
-       /* slot = (CardView)inflater.inflate(R.layout.daily_schedule_slot_view, container, false);
-        slot_time = (TextView) slot.findViewById(R.id.slot_time);
-        slot_time.setText(Utilities.get_day_name(day_number));
-        slot_info = (TextView)slot.findViewById(R.id.slot_info);
-
-        list.addView(slot);*/
     }
 }
