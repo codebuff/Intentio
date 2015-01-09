@@ -156,7 +156,8 @@ public class Utilities {
         for(int i = Constants.current_slot_number + 1 ;i< slots.length;i++){
             day = get_day_name(day_number[0]);
             next_slot_info = user.get_schedule_slot(day,slots[i].trim());
-            if(next_slot_info != Constants.empty_slot){
+            next_slot_info = next_slot_info.trim();
+            if(!next_slot_info.equals(Constants.empty_slot)){
                 next_slot.put("day","today");
                 next_slot.put("next_slot_info",next_slot_info);
                 next_slot.put("next_slot_time",slots[i]);
@@ -168,7 +169,8 @@ public class Utilities {
             day = get_day_name(day_number[j]);
             for(int i = 0 ;i< slots.length;i++){
                 next_slot_info = user.get_schedule_slot(day,slots[i].trim());
-                if(next_slot_info != Constants.empty_slot){
+                next_slot_info = next_slot_info.trim();
+                if(!next_slot_info.equals(Constants.empty_slot)){
                     next_slot.put("day",get_day_name(day_number[j]));
                     next_slot.put("next_slot_info",next_slot_info);
                     next_slot.put("next_slot_time",slots[i]);
