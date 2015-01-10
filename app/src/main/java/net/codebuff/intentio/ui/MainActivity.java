@@ -98,6 +98,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
                     .commit();
             Constants.schedule_updated = false;
         }
+
         summarize();
     }
 
@@ -112,6 +113,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
            startActivity(new Intent(this , first_run.class));
             finish();
         }
+
         summarize();
     }
 

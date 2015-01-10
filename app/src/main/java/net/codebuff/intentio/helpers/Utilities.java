@@ -165,11 +165,12 @@ public class Utilities {
                 return next_slot;
             }
         }
-        for(int j = 0;j < day_number.length;j++){
+        for(int j = 1;j < day_number.length;j++){
             day = get_day_name(day_number[j]);
             for(int i = 0 ;i< slots.length;i++){
                 next_slot_info = user.get_schedule_slot(day,slots[i].trim());
                 next_slot_info = next_slot_info.trim();
+
                 if(!next_slot_info.equals(Constants.empty_slot)){
                     next_slot.put("day",get_day_name(day_number[j]));
                     next_slot.put("next_slot_info",next_slot_info);
