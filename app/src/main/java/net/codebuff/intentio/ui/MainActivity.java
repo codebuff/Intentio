@@ -2,6 +2,7 @@ package net.codebuff.intentio.ui;
 
 import android.content.Intent;
 import android.preference.PreferenceManager;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -155,6 +156,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
         }
         if (id == R.id.action_week) {
             startActivity(new Intent(this,week.class));
+            return true;
+        }
+        if (id == R.id.action_about) {
+            DialogFragment about = new about();
+            about.show(getSupportFragmentManager(),"about");
             return true;
         }
 

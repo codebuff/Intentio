@@ -16,14 +16,17 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
 import net.codebuff.intentio.R;
 import net.codebuff.intentio.helpers.Constants;
-import net.codebuff.intentio.helpers.Utilities;
 import net.codebuff.intentio.parser.Parser;
+import net.codebuff.intentio.ui.incorrect_file_dialog;
 
 import java.io.IOException;
 import java.util.List;
@@ -141,7 +144,10 @@ public class SettingsActivity extends PreferenceActivity {
 
                         Constants.schedule_updated = true;
                         Toast.makeText(getApplicationContext(), "File successfully parsed and data saved", Toast.LENGTH_LONG).show();
-                    }} catch (IOException e) {
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Incorrect file choosen", Toast.LENGTH_LONG).show();
+                    }
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
                 Log.i("path",path);

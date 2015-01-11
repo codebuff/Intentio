@@ -4,4 +4,5 @@
     <color name="primary_dark">#1565C0</color>
     <color name="accent">#0091EA</color>
     <color name="cardview_initial_background">#71C3DE</color>
+    <color name="grab_attention">#D32F2F</color>
 </resources>

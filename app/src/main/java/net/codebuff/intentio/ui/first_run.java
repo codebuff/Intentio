@@ -2,6 +2,8 @@ package net.codebuff.intentio.ui;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -103,10 +105,16 @@ public class first_run extends ActionBarActivity {
                     String xls_content = parser.parse_excel();
                     if(!xls_content.equals("file not found")) {
                         txt_main.setText("Intentio Setup Complete");
+                        txt_main.setTextColor(getResources().getColor(R.color.grab_attention));
                         txt.setText("File parsed successfully and data saved, Click Done to finish setup\n (if you want you can also see the raw data of your excel file)");
                         parser_dump.setText(xls_content);
                         choose_file.setVisibility(View.GONE);
                         app.update_pref_settings("reset",false);
+                    }else{
+                        DialogFragment incorrect_file = new incorrect_file_dialog();
+                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                        ft.add(incorrect_file,null);
+                        ft.commitAllowingStateLoss();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
