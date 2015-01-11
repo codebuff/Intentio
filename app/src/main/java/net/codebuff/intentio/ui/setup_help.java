@@ -12,7 +12,7 @@ import net.codebuff.intentio.R;
 /**
  * Created by deepankar on 11/1/15.
  */
-public class help extends DialogFragment{
+public class setup_help extends DialogFragment{
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -24,10 +24,10 @@ public class help extends DialogFragment{
 
         // Inflate and set the layout for the dialog
         // Pass null as the parent view because its going in the dialog layout
-        builder.setView(inflater.inflate(R.layout.help, null))
-                .setTitle("Help")
+        builder.setView(inflater.inflate(R.layout.setup_help, null))
+                .setTitle("Setup Help")
                         // Add action buttons
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Dismiss", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 

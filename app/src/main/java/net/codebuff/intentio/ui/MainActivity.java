@@ -5,17 +5,10 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
-import android.support.v4.app.Fragment;
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
@@ -24,8 +17,6 @@ import net.codebuff.intentio.helpers.Constants;
 import net.codebuff.intentio.helpers.Utilities;
 import net.codebuff.intentio.preferences.PrefsManager;
 import net.codebuff.intentio.preferences.SettingsActivity;
-
-import org.apache.poi.ss.formula.functions.Now;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -163,6 +154,11 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
             about.show(getSupportFragmentManager(),"about");
             return true;
         }
+       /* if (id == R.id.action_help) {
+            DialogFragment help = new setup_help();
+            help.show(getSupportFragmentManager(),"about");
+            return true;
+        }*/
 
         return super.onOptionsItemSelected(item);
     }

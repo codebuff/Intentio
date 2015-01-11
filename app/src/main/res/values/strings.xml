@@ -22,8 +22,11 @@
 
 
     <string name="first_run">Intentio Set Up</string>
-    <string name="title_activity_week">week (ascii dump)</string>
+    <string name="title_activity_week">Ascii dump(for coders)</string>
 
-    <string name="string_description">Intentio automatically parses your schedule from the excel(.xls) file and then displays the daily schedule in more intuitive manner.\n
-    The app also shows you the current class and the next class and notifies about the same 10 minutes before the class</string>
+    <string name="string_description">Intentio automatically imports your schedule from the excel(.xls) file(obtained from ERP).\nDisplays it in more intuitive manner.\n
+    Shows your current class and the next class and notifies about the same 10 minutes before the class\n
+    (More features will be added soon)</string>
+
+    <string name="string_incorrect_file">Currently only files from ERP are supported as of now\n(the excel files which end with .xls extension)</string>
 </resources>

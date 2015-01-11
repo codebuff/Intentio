@@ -6,6 +6,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,7 @@ public class first_run extends ActionBarActivity {
     private TextView txt;
     private Button choose_file;
     private Button done;
+    private CardView fr_help;
     private PrefsManager app;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +37,17 @@ public class first_run extends ActionBarActivity {
         txt = (TextView) findViewById(R.id.fr_textview);
         choose_file = (Button) findViewById(R.id.fr_choose_file);
         done = (Button) findViewById(R.id.fr_done);
+        fr_help = (CardView)findViewById(R.id.fr_help);
         app = new PrefsManager(getApplicationContext());
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+
+        DialogFragment help = new setup_help();
+        help.show(getSupportFragmentManager(),"about");
+
 
         choose_file.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +58,13 @@ public class first_run extends ActionBarActivity {
             }
         });
 
+        fr_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment help = new setup_help();
+                help.show(getSupportFragmentManager(),"about");
+            }
+        });
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,12 +81,23 @@ public class first_run extends ActionBarActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+
+
         choose_file.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("application/vnd.ms-excel");
                 startActivityForResult(intent, 0);
+            }
+        });
+
+        fr_help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogFragment help = new setup_help();
+                help.show(getSupportFragmentManager(),"about");
             }
         });
 
@@ -106,14 +131,14 @@ public class first_run extends ActionBarActivity {
                     if(!xls_content.equals("file not found")) {
                         txt_main.setText("Intentio Setup Complete");
                         txt_main.setTextColor(getResources().getColor(R.color.grab_attention));
-                        txt.setText("File parsed successfully and data saved, Click Done to finish setup\n (if you want you can also see the raw data of your excel file)");
+                        txt.setText("File parsed successfully and data saved, Click Done to finish setup\n (follwoing raw data is displayed just for satisfying coder's itch and has no other purpose whatsoever)");
                         parser_dump.setText(xls_content);
                         choose_file.setVisibility(View.GONE);
                         app.update_pref_settings("reset",false);
                     }else{
                         DialogFragment incorrect_file = new incorrect_file_dialog();
                         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                        ft.add(incorrect_file,null);
+                        ft.add(incorrect_file, null);
                         ft.commitAllowingStateLoss();
                     }
                 } catch (IOException e) {

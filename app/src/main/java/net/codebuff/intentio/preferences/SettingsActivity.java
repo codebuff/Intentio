@@ -75,7 +75,7 @@ public class SettingsActivity extends PreferenceActivity {
         // Add 'general' preferences.
         addPreferencesFromResource(R.xml.pref_general);
         PreferenceCategory fakeHeader2 = new PreferenceCategory(this);
-        fakeHeader2.setTitle("choose file to parse");
+        fakeHeader2.setTitle("Update Schedule");
         getPreferenceScreen().addPreference(fakeHeader2);
         addPreferencesFromResource(R.xml.pref_file_chooser);
 
