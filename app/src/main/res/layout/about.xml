@@ -45,16 +45,6 @@
             android:linksClickable="true"
             android:layout_margin="@dimen/margin_small" />
 
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="github.com/codebuff"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_horizontal"
-            android:autoLink="web"
-            android:linksClickable="true"
-            android:layout_margin="@dimen/margin_small" />
-
     </LinearLayout>
 
     </ScrollView>
