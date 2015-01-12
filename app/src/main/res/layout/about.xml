@@ -33,16 +33,28 @@
             android:id="@+id/developer"
             android:gravity="center_horizontal"
             android:layout_margin="@dimen/margin_medium"
-            android:textStyle="italic" />
+            android:textStyle="bold|italic" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Icon by : \nChhavi Sharma"
-            android:id="@+id/icon_by"
+            android:text="linkedin.com/in/codebuff"
+            android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
-            android:layout_margin="@dimen/margin_medium" />
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:layout_margin="@dimen/margin_small" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="github.com/codebuff"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:autoLink="web"
+            android:linksClickable="true"
+            android:layout_margin="@dimen/margin_small" />
+
     </LinearLayout>
 
     </ScrollView>
