@@ -25,8 +25,8 @@
     <string name="title_activity_week">Ascii dump(for coders)</string>
 
     <string name="string_description">Intentio automatically imports your schedule from the excel(.xls) file(obtained from ERP).\nDisplays it in more intuitive manner.\n
-    Shows your current class and the next class and notifies about the same 10 minutes before the class\n
-    (More features will be added soon)</string>
+    Shows your current class\n
+    (More features like notification will be added soon\n currently occupied with Ingenuity and MIC)</string>
 
     <string name="string_incorrect_file">Currently only files from ERP are supported as of now\n(the excel files which end with .xls extension)</string>
 </resources>
