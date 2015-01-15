@@ -116,9 +116,18 @@ public class Utilities {
             slot_start_minute = Integer.parseInt(slot_exploded[0].trim());
             slot_end_hour = Integer.parseInt(slot_exploded[1].trim());
 
+            System.out.print("current hour ");
+            System.out.println(current_hour);
+            System.out.print("current minure");
+            System.out.println(current_minute);
+            System.out.print("start hour");
+            System.out.println(slot_start_hour);
+
+
             if (current_hour == slot_start_hour) {
                 if (slot_start_minute <= current_minute) {
                     Constants.current_slot_number = i;
+                    System.out.println(Constants.current_slot_number);
                     return slots[i];
                 }
             }
@@ -126,6 +135,7 @@ public class Utilities {
             if (current_hour == slot_end_hour) {
                 if (slot_end_minute >= current_minute) {
                     Constants.current_slot_number = i;
+                    System.out.println(Constants.current_slot_number);
                     return slots[i];
                 }
             }
@@ -153,10 +163,13 @@ public class Utilities {
             }
         }
 
+        System.out.println(Constants.current_slot_number);
+
         for(int i = Constants.current_slot_number + 1 ;i< slots.length;i++){
             day = get_day_name(day_number[0]);
             next_slot_info = user.get_schedule_slot(day,slots[i].trim());
             next_slot_info = next_slot_info.trim();
+            Log.e("slot",next_slot_info);
             if(!next_slot_info.equals(Constants.empty_slot)){
                 next_slot.put("day","today");
                 next_slot.put("next_slot_info",next_slot_info);
