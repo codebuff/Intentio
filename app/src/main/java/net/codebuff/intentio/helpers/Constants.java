@@ -11,6 +11,7 @@ public class Constants {
     public static final String empty_slot = "^ - ^";
     public static boolean schedule_updated = false;
     public static int current_slot_number = -1;
+    public static boolean current_time_is_past_last_slot = false;
 
 
 
