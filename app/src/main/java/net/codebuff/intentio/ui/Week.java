@@ -12,7 +12,7 @@ import net.codebuff.intentio.helpers.Utilities;
 import net.codebuff.intentio.preferences.PrefsManager;
 import net.codebuff.intentio.preferences.SettingsActivity;
 
-public class week extends ActionBarActivity {
+public class Week extends ActionBarActivity {
     private TextView week_data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

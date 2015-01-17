@@ -6,7 +6,7 @@
                 android:paddingRight="@dimen/activity_horizontal_margin"
                 android:paddingTop="@dimen/activity_vertical_margin"
                 android:paddingBottom="@dimen/activity_vertical_margin"
-                tools:context="net.codebuff.intentio.ui.daily_schedule"
+                tools:context="net.codebuff.intentio.ui.DailySchedule"
     android:id="@+id/daily_schedule_list"
     android:orientation="vertical">
 

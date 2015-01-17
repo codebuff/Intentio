@@ -41,7 +41,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
             // open the parser activity
             if (savedInstanceState == null) {
                 app.update_pref_settings("xls_file_path","No file choosen");
-                startActivity(new Intent(this, first_run.class));
+                startActivity(new Intent(this, FirstRun.class));
                 finish();
             }
         }
@@ -81,12 +81,12 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
         if(app.first_run()){
             app.update_pref_settings("xls_file_path","No file choosen");
             // open the parser activity
-            startActivity(new Intent(this , first_run.class));
+            startActivity(new Intent(this , FirstRun.class));
             finish();
         }
         if(Constants.schedule_updated){
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.daily_schedule_container, new daily_schedule().newInstance(Utilities.get_day_number()))
+                    .replace(R.id.daily_schedule_container, new DailySchedule().newInstance(Utilities.get_day_number()))
                     .commit();
             Constants.schedule_updated = false;
         }
@@ -102,7 +102,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
         if(app.first_run()){
             app.update_pref_settings("xls_file_path","No file choosen");
             // open the parser activity
-           startActivity(new Intent(this , first_run.class));
+           startActivity(new Intent(this , FirstRun.class));
             finish();
         }
 
@@ -146,17 +146,17 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
             return true;
         }
         if (id == R.id.action_week) {
-            startActivity(new Intent(this,week.class));
+            startActivity(new Intent(this,Week.class));
             return true;
         }
         if (id == R.id.action_about) {
-            DialogFragment about = new about();
-            about.show(getSupportFragmentManager(),"about");
+            DialogFragment about = new About();
+            about.show(getSupportFragmentManager(),"About");
             return true;
         }
        /* if (id == R.id.action_help) {
-            DialogFragment help = new setup_help();
-            help.show(getSupportFragmentManager(),"about");
+            DialogFragment help = new SetupHelp();
+            help.show(getSupportFragmentManager(),"About");
             return true;
         }*/
 
@@ -168,7 +168,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
         // When the given dropdown item is selected, show its contents in the
         // container view.
         getSupportFragmentManager().beginTransaction()
-               .replace(R.id.daily_schedule_container, new daily_schedule().newInstance(day_number + 1))
+               .replace(R.id.daily_schedule_container, new DailySchedule().newInstance(day_number + 1))
                .commit();
         return true;
     }

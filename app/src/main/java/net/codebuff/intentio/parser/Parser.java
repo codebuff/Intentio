@@ -1,20 +1,12 @@
 package net.codebuff.intentio.parser;
 
-import android.app.FragmentManager;
 import android.content.Context;
 import android.net.Uri;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
-import android.widget.Toast;
 
 import net.codebuff.intentio.helpers.Constants;
 import net.codebuff.intentio.helpers.Utilities;
 import net.codebuff.intentio.preferences.PrefsManager;
-import net.codebuff.intentio.ui.about;
-import net.codebuff.intentio.ui.incorrect_file_dialog;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;

@@ -16,9 +16,6 @@ import android.preference.PreferenceCategory;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.preference.RingtonePreference;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -26,7 +23,6 @@ import android.widget.Toast;
 import net.codebuff.intentio.R;
 import net.codebuff.intentio.helpers.Constants;
 import net.codebuff.intentio.parser.Parser;
-import net.codebuff.intentio.ui.incorrect_file_dialog;
 
 import java.io.IOException;
 import java.util.List;

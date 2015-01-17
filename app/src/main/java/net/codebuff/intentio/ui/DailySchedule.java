@@ -16,7 +16,7 @@ import net.codebuff.intentio.preferences.PrefsManager;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class daily_schedule extends Fragment {
+public class DailySchedule extends Fragment {
 
     /**
      * The fragment argument representing the section number for this
@@ -28,15 +28,15 @@ public class daily_schedule extends Fragment {
      * Returns a new instance of this fragment for the given section
      * number.
      */
-    public  daily_schedule newInstance(int day_number) {
-        daily_schedule fragment = new daily_schedule();
+    public DailySchedule newInstance(int day_number) {
+        DailySchedule fragment = new DailySchedule();
         Bundle args = new Bundle();
         args.putInt(DAY_NUMBER, day_number);
         fragment.setArguments(args);
         return fragment;
     }
 
-    public daily_schedule() {
+    public DailySchedule() {
     }
 
 

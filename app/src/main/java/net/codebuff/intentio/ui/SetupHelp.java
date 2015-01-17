@@ -12,7 +12,7 @@ import net.codebuff.intentio.R;
 /**
  * Created by deepankar on 11/1/15.
  */
-public class setup_help extends DialogFragment{
+public class SetupHelp extends DialogFragment{
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {

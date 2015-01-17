@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.first_run"
+            android:name=".ui.FirstRun"
             android:label="@string/title_activity_first_run"
             android:screenOrientation="portrait" >
         </activity>
@@ -30,9 +30,20 @@
             android:label="@string/title_activity_settings" >
         </activity>
         <activity
-            android:name=".ui.week"
+            android:name=".ui.Week"
             android:label="@string/title_activity_week" >
         </activity>
+
+        <service
+            android:name=".backend.IntentioService"
+            android:exported="false" >
+        </service>
+
+        <receiver
+            android:name=".backend.IntentioReceiver"
+            android:enabled="true"
+            android:exported="true" >
+        </receiver>
     </application>
 
 </manifest>

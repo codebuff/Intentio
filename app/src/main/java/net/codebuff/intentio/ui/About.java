@@ -12,7 +12,7 @@ import net.codebuff.intentio.R;
 /**
  * Created by deepankar on 11/1/15.
  */
-public class about extends DialogFragment {
+public class About extends DialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the Builder class for convenient dialog construction

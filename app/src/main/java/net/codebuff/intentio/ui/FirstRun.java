@@ -19,7 +19,7 @@ import net.codebuff.intentio.preferences.PrefsManager;
 
 import java.io.IOException;
 
-public class first_run extends ActionBarActivity {
+public class FirstRun extends ActionBarActivity {
 
     private TextView txt_main;
     private TextView parser_dump;
@@ -45,8 +45,8 @@ public class first_run extends ActionBarActivity {
     protected void onStart() {
         super.onStart();
 
-        DialogFragment help = new setup_help();
-        help.show(getSupportFragmentManager(),"about");
+        DialogFragment help = new SetupHelp();
+        help.show(getSupportFragmentManager(),"About");
 
 
         choose_file.setOnClickListener(new View.OnClickListener() {
@@ -61,8 +61,8 @@ public class first_run extends ActionBarActivity {
         fr_help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment help = new setup_help();
-                help.show(getSupportFragmentManager(),"about");
+                DialogFragment help = new SetupHelp();
+                help.show(getSupportFragmentManager(),"About");
             }
         });
         done.setOnClickListener(new View.OnClickListener() {
@@ -96,8 +96,8 @@ public class first_run extends ActionBarActivity {
         fr_help.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment help = new setup_help();
-                help.show(getSupportFragmentManager(),"about");
+                DialogFragment help = new SetupHelp();
+                help.show(getSupportFragmentManager(),"About");
             }
         });
 
@@ -136,7 +136,7 @@ public class first_run extends ActionBarActivity {
                         choose_file.setVisibility(View.GONE);
                         app.update_pref_settings("reset",false);
                     }else{
-                        DialogFragment incorrect_file = new incorrect_file_dialog();
+                        DialogFragment incorrect_file = new IncorrectFileDialog();
                         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                         ft.add(incorrect_file, null);
                         ft.commitAllowingStateLoss();
