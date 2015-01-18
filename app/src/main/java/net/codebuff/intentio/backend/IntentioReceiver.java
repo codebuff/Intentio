@@ -20,6 +20,7 @@ public class IntentioReceiver extends BroadcastReceiver {
             NotificationCentre.notify(context, intent.getStringExtra("alarm"), 0);
         } else if(action.equals(Constants.ACTION_NOTIFICATION)){
             NotificationCentre.notify(context, intent.getStringExtra(Constants.EXTRA_NOTIF_TXT), 0);
+            IntentioService.startActionScheduleNextAlarm(context);
         }
     }
 }

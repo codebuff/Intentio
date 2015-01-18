@@ -165,7 +165,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
         }
 
         if (id == R.id.action_alarm_demo) {
-            IntentioService.startActionAlarmDemo(context);
+            IntentioService.startActionScheduleNextAlarm(context);
+            //IntentioService.startActionAlarmDemo(context);
         }
 
         return super.onOptionsItemSelected(item);
