@@ -18,4 +18,12 @@
         android:title="help"
         android:orderInCategory="100"
         app:showAsAction="never"/-->
+    <item android:id="@+id/action_notif_demo"
+        android:title="Notification Demo"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_alarm_demo"
+        android:title="Alarm Demo"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
 </menu>

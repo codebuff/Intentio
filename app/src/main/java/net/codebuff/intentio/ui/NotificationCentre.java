@@ -46,7 +46,7 @@ public class NotificationCentre {
      * @see #cancel(Context)
      */
     public static void notify(final Context context,
-                              final String exampleString, final int number) {
+                              final String notification, final int number) {
         final Resources res = context.getResources();
 
         // This image is used as the notification's large icon (thumbnail).
@@ -54,11 +54,9 @@ public class NotificationCentre {
         final Bitmap picture = BitmapFactory.decodeResource(res, R.drawable.ic_launcher);
 
 
-        final String ticker = exampleString;
-        final String title = res.getString(
-                R.string._centre_notification_title_template, exampleString);
-        final String text = res.getString(
-                R.string._centre_notification_placeholder_text_template, exampleString);
+        final String ticker = "Attention! Class ahead";
+        final String title = "Go 90 or get debarred :p";
+        final String text = notification;
 
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
 
@@ -104,7 +102,7 @@ public class NotificationCentre {
                         PendingIntent.getActivity(
                                 context,
                                 0,
-                                new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.google.com")),
+                                new Intent(context, MainActivity.class),
                                 PendingIntent.FLAG_UPDATE_CURRENT))
 
                         // Show expanded text content on devices running Android 4.1 or
@@ -112,14 +110,14 @@ public class NotificationCentre {
                 .setStyle(new NotificationCompat.BigTextStyle()
                         .bigText(text)
                         .setBigContentTitle(title)
-                        .setSummaryText("Dummy summary text"))
+                        /*.setSummaryText("Dummy summary text")*/)
 
                         // Example additional actions for this notification. These will
                         // only show on devices running Android 4.1 or later, so you
                         // should ensure that the activity in this notification's
                         // content intent provides access to the same actions in
                         // another way.
-                .addAction(
+                /*.addAction(
                         R.drawable.ic_action_stat_share,
                         res.getString(R.string.action_share),
                         PendingIntent.getActivity(
@@ -132,7 +130,7 @@ public class NotificationCentre {
                 .addAction(
                         R.drawable.ic_action_stat_reply,
                         res.getString(R.string.action_reply),
-                        null)
+                        null)*/
 
                         // Automatically dismiss the notification when it is touched.
                 .setAutoCancel(true);

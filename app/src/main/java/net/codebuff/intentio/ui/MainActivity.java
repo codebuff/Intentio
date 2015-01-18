@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import net.codebuff.intentio.R;
+import net.codebuff.intentio.backend.IntentioService;
 import net.codebuff.intentio.helpers.Constants;
 import net.codebuff.intentio.helpers.Utilities;
 import net.codebuff.intentio.preferences.PrefsManager;
@@ -159,6 +160,13 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
             help.show(getSupportFragmentManager(),"About");
             return true;
         }*/
+        if (id == R.id.action_notif_demo) {
+            IntentioService.startActionNotification(context,summary.getText().toString());
+        }
+
+        if (id == R.id.action_alarm_demo) {
+            IntentioService.startActionScheduleNextAlarm(context,0,0);
+        }
 
         return super.onOptionsItemSelected(item);
     }
