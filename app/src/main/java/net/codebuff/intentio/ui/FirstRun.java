@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.codebuff.intentio.R;
+import net.codebuff.intentio.helpers.Constants;
 import net.codebuff.intentio.parser.Parser;
 import net.codebuff.intentio.preferences.PrefsManager;
 
@@ -28,6 +29,7 @@ public class FirstRun extends ActionBarActivity {
     private Button done;
     private CardView fr_help;
     private PrefsManager app;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,7 +39,7 @@ public class FirstRun extends ActionBarActivity {
         txt = (TextView) findViewById(R.id.fr_textview);
         choose_file = (Button) findViewById(R.id.fr_choose_file);
         done = (Button) findViewById(R.id.fr_done);
-        fr_help = (CardView)findViewById(R.id.fr_help);
+        fr_help = (CardView) findViewById(R.id.fr_help);
         app = new PrefsManager(getApplicationContext());
     }
 
@@ -45,8 +47,11 @@ public class FirstRun extends ActionBarActivity {
     protected void onStart() {
         super.onStart();
 
-        DialogFragment help = new SetupHelp();
-        help.show(getSupportFragmentManager(),"About");
+        if (!Constants.setup_help_shown) {
+            DialogFragment help = new SetupHelp();
+            help.show(getSupportFragmentManager(), "setup_help");
+            Constants.setup_help_shown = true;
+        }
 
 
         choose_file.setOnClickListener(new View.OnClickListener() {
@@ -62,16 +67,16 @@ public class FirstRun extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 DialogFragment help = new SetupHelp();
-                help.show(getSupportFragmentManager(),"About");
+                help.show(getSupportFragmentManager(), "About");
             }
         });
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(app.first_run()){
+                if (app.first_run()) {
                     Toast.makeText(getApplicationContext(), "Setup Incomplete", Toast.LENGTH_LONG).show();
-                }else{
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                } else {
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
                 }
             }
@@ -83,7 +88,6 @@ public class FirstRun extends ActionBarActivity {
         super.onResume();
 
 
-
         choose_file.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,17 +101,17 @@ public class FirstRun extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 DialogFragment help = new SetupHelp();
-                help.show(getSupportFragmentManager(),"About");
+                help.show(getSupportFragmentManager(), "About");
             }
         });
 
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(app.first_run()){
+                if (app.first_run()) {
                     Toast.makeText(getApplicationContext(), "Setup Incomplete", Toast.LENGTH_LONG).show();
-                }else{
-                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                } else {
+                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     finish();
                 }
             }
@@ -128,14 +132,14 @@ public class FirstRun extends ActionBarActivity {
                 try {
                     Parser parser = new Parser(getApplicationContext(), uri);
                     String xls_content = parser.parse_excel();
-                    if(!xls_content.equals("file not found")) {
+                    if (!xls_content.equals("file not found")) {
                         txt_main.setText("Intentio Setup Complete");
                         txt_main.setTextColor(getResources().getColor(R.color.grab_attention));
                         txt.setText("File parsed successfully and data saved, Click Done to finish setup\n (follwoing raw data is displayed just for satisfying coder's itch and has no other purpose whatsoever)");
                         parser_dump.setText(xls_content);
                         choose_file.setVisibility(View.GONE);
-                        app.update_pref_settings("reset",false);
-                    }else{
+                        app.update_pref_settings("reset", false);
+                    } else {
                         DialogFragment incorrect_file = new IncorrectFileDialog();
                         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                         ft.add(incorrect_file, null);

@@ -9,23 +9,28 @@ import java.util.Map;
 
 /**
  * Created by deepankar on 18/11/14.
- *
+ * <p/>
  * the methods available in this class are called from all classes except settingsactvity class
  */
 public class PrefsManager {
     Context context;
 
-    public PrefsManager(Context context){
-        this.context = context ;
+    public PrefsManager(Context context) {
+        this.context = context;
     }
 
-    public boolean first_run(){
+    public boolean first_run() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 
-        return prefs.getBoolean("reset",true);
+        return prefs.getBoolean("reset", true);
     }
 
-   public void save_slots(String slot_number,String slot_data){
+    public boolean notifications_allowed() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        return prefs.getBoolean("notifications_new_message", true);
+    }
+
+    public void save_slots(String slot_number, String slot_data) {
        /*System.out.println(day);
         System.out.println(slot);
         System.out.println(data);*/
@@ -33,79 +38,76 @@ public class PrefsManager {
         SharedPreferences slots = this.context.getSharedPreferences("slots",
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = slots.edit();
-        editor.putString(slot_number,slot_data);
+        editor.putString(slot_number, slot_data);
         //editor.commit();
         editor.apply();
     }
 
 
-
-    public String get_slots(){
+    public String get_slots() {
         SharedPreferences schd = context.getSharedPreferences("slots",
                 Context.MODE_PRIVATE);
-        return schd.getString("slots","");
+        return schd.getString("slots", "");
     }
-    public void save_schedule(String day,String slot,String data){
+
+    public void save_schedule(String day, String slot, String data) {
        /*System.out.println(day);
         System.out.println(slot);
         System.out.println(data);*/
 
-       SharedPreferences schd = this.context.getSharedPreferences(day + "_schedule",
+        SharedPreferences schd = this.context.getSharedPreferences(day + "_schedule",
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = schd.edit();
-        editor.putString(slot,data);
+        editor.putString(slot, data);
         //editor.commit();
         editor.apply();
     }
 
-    public String get_schedule_slot(String day,String slot){
+    public String get_schedule_slot(String day, String slot) {
         SharedPreferences schd = context.getSharedPreferences(day + "_schedule",
                 Context.MODE_PRIVATE);
-        return schd.getString(slot,"");
+        return schd.getString(slot, "");
     }
 
-    public Map get_schedule_day(String day){
+    public Map get_schedule_day(String day) {
         SharedPreferences schd = context.getSharedPreferences(day + "_schedule",
                 Context.MODE_PRIVATE);
         return schd.getAll();
     }
 
-    public void save_alarm_schedule(String day,String slot,boolean pref){
+    public void save_alarm_schedule(String day, String slot, boolean pref) {
         SharedPreferences schd = context.getSharedPreferences(day + "alarm",
                 Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = schd.edit();
-        editor.putBoolean(slot,pref);
+        editor.putBoolean(slot, pref);
         //editor.commit();
         editor.apply();
     }
 
-    public void update_pref_settings(String key ,String value) {
+    public void update_pref_settings(String key, String value) {
         Log.e("key", key);
-        Log.e("Value",value);
+        Log.e("Value", value);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(key ,value);
-       // editor.commit();
+        editor.putString(key, value);
+        // editor.commit();
         editor.apply();
 
     }
 
-    public void update_pref_settings(String key ,boolean value) {
+    public void update_pref_settings(String key, boolean value) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putBoolean(key ,value);
+        editor.putBoolean(key, value);
         //editor.commit();
         editor.apply();
 
     }
 
-    public String get_saved_settings(String key){
+    public String get_saved_settings(String key) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getString(key,"No file choosen");
+        return prefs.getString(key, "No file choosen");
     }
-
-
-
 
 
 }

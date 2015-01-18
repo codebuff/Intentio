@@ -8,22 +8,18 @@ import android.content.Context;
 import android.widget.Toast;
 
 import net.codebuff.intentio.helpers.Constants;
+import net.codebuff.intentio.helpers.Utilities;
+import net.codebuff.intentio.preferences.PrefsManager;
 import net.codebuff.intentio.ui.NotificationCentre;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.TimeZone;
 
 
 public class IntentioService extends IntentService {
     // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
-
-    private static final String ACTION_NOTIFICATION = "net.codebuff.intentio.backend.action.Notification";
-    private static final String ACTION_SCHEDULE_NEXT_ALARM = "net.codebuff.intentio.backend.action.ScheduleNextAlarm";
-
-
-    private static final String EXTRA_NOTIF_TXT = "net.codebuff.intentio.backend.extra.NOTIF_TXT";
-    private static final String EXTRA_ALARM_HOUR = "net.codebuff.intentio.backend.extra.alarm.hour";
-    private static final String EXTRA_ALARM_MINUTE = "net.codebuff.intentio.backend.extra.alarm.min";
+// contants stored in constant.java
 
     /**
      * Starts this service to perform action Foo with the given parameters. If
@@ -34,14 +30,20 @@ public class IntentioService extends IntentService {
 
     public static void startActionNotification(Context context,String notif_txt){
         Intent intent = new Intent(context, IntentioService.class);
-        intent.setAction(ACTION_NOTIFICATION);
-        intent.putExtra(EXTRA_NOTIF_TXT, notif_txt);
+        intent.setAction(Constants.ACTION_NOTIFICATION);
+        intent.putExtra(Constants.EXTRA_NOTIF_TXT, notif_txt);
         context.startService(intent);
     }
 
-    public static void startActionScheduleNextAlarm(Context context,int hour, int minute){
+    public static void startActionScheduleNextAlarm(Context context){
         Intent intent = new Intent(context, IntentioService.class);
-        intent.setAction(ACTION_SCHEDULE_NEXT_ALARM);
+        intent.setAction(Constants.ACTION_SCHEDULE_NEXT_ALARM);
+        context.startService(intent);
+    }
+
+    public static void startActionAlarmDemo(Context context){
+        Intent intent = new Intent(context, IntentioService.class);
+        intent.setAction(Constants.ACTION_ALARM_DEMO);
         context.startService(intent);
     }
 
@@ -53,13 +55,15 @@ public class IntentioService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         if (intent != null) {
             final String action = intent.getAction();
-            if(ACTION_NOTIFICATION.equals(action)){
-                final String notif_txt = intent.getStringExtra(EXTRA_NOTIF_TXT);
+            if(Constants.ACTION_NOTIFICATION.equals(action)){
+                final String notif_txt = intent.getStringExtra(Constants.EXTRA_NOTIF_TXT);
                 handleActionNotification(notif_txt);
-            } else if(ACTION_SCHEDULE_NEXT_ALARM.equals(action)){
+            } else if(Constants.ACTION_SCHEDULE_NEXT_ALARM.equals(action)){
 
-                handleScheduleNextAlarm(intent.getIntExtra(EXTRA_ALARM_HOUR, 0), intent.getIntExtra(EXTRA_ALARM_MINUTE, 0));
-
+                handleScheduleNextAlarm();
+            }
+            else if(Constants.ACTION_ALARM_DEMO.equals(action)){
+                handleAlarmDemo();
             }
         }
     }
@@ -73,14 +77,64 @@ public class IntentioService extends IntentService {
         NotificationCentre.notify(getApplicationContext(), notification, 0);
     }
 
-    private void handleScheduleNextAlarm(int hour, int min){
+    private void handleScheduleNextAlarm(){
+        Context context = getApplicationContext();
+        PrefsManager app = new PrefsManager(context);
+        if(app.notifications_allowed()){
+            AlarmManager alarm_manager;
+            PendingIntent alarm_intent;
+            Calendar cal = Calendar.getInstance(TimeZone.getDefault());
+            alarm_manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(context ,IntentioReceiver.class);
 
+
+            String current_slot_time;
+            String current_slot_info;
+            HashMap<String, String> next_slot = new HashMap<String, String>();
+
+            String[] slot_exploded;
+            int slot_start_hour = -1;
+            int slot_start_minute = -1;
+            int slot_end_hour = -1;
+            int slot_end_minute = -1;
+
+            String sl = app.get_slots().replace("[","");
+            sl = sl.replace("]","");
+            String[] slots = sl.split(",");
+            slots = Utilities.sort_slots(slots);
+
+            current_slot_time = Utilities.find_current_slot(slots);
+
+            next_slot = Utilities.find_next_slot(app,slots);
+            slot_exploded = next_slot.get("next_slot_time").split(":");
+            slot_start_hour = Integer.parseInt(slot_exploded[0].trim());
+            slot_end_minute = Integer.parseInt(slot_exploded[2].trim());
+            slot_exploded = slot_exploded[1].split("-");
+            slot_start_minute = Integer.parseInt(slot_exploded[0].trim());
+            slot_end_hour = Integer.parseInt(slot_exploded[1].trim());
+
+            intent.setAction(Constants.ACTION_NOTIFICATION);
+            alarm_intent = PendingIntent.getBroadcast(context, 0, intent,PendingIntent.FLAG_UPDATE_CURRENT);//FLAG_UPDATE_CURRENT
+            alarm_manager.cancel(alarm_intent);
+            if (android.os.Build.VERSION.SDK_INT < 19) {
+                alarm_manager.set(AlarmManager.RTC_WAKEUP, (cal.getTimeInMillis() + 3000), alarm_intent);
+            } else {
+                alarm_manager.setExact(AlarmManager.RTC_WAKEUP, (cal.getTimeInMillis() + 3000), alarm_intent);
+            }
+        }
+
+        System.out.println("alarm _set");
+    }
+
+    private void handleAlarmDemo(){
         Context context = getApplicationContext();
         AlarmManager alarm_manager;
         PendingIntent alarm_intent;
         Calendar cal = Calendar.getInstance(TimeZone.getDefault());
         alarm_manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context ,IntentioReceiver.class);
+        intent.setAction(Constants.ACTION_ALARM_DEMO);
+        intent.putExtra("alarm","alarm_demo");
         alarm_intent = PendingIntent.getBroadcast(context, 0, intent,PendingIntent.FLAG_UPDATE_CURRENT);//FLAG_UPDATE_CURRENT
         alarm_manager.cancel(alarm_intent);
         if (android.os.Build.VERSION.SDK_INT < 19) {
@@ -88,6 +142,6 @@ public class IntentioService extends IntentService {
         } else {
             alarm_manager.setExact(AlarmManager.RTC_WAKEUP, (cal.getTimeInMillis() + 3000), alarm_intent);
         }
-        System.out.println(cal.getTimeInMillis());
+        System.out.println("alarm_demo_set");
     }
 }
