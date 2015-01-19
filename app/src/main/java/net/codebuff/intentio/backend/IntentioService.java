@@ -115,7 +115,7 @@ public class IntentioService extends IntentService {
 
             int current_hour = cal.get(Calendar.HOUR_OF_DAY);
             int current_minute = cal.get(Calendar.MINUTE);
-           /* System.out.println("===============");
+            /*System.out.println("===============");
             System.out.print("current hour ");
             System.out.println(current_hour);
             System.out.print("current minute ");
@@ -138,6 +138,42 @@ public class IntentioService extends IntentService {
                 slot_start_minute = slot_start_minute + 60;
             }
 
+
+            if((Integer.parseInt(next_slot.get("day_number")) == cal.get(Calendar.DAY_OF_WEEK)) && (current_hour == slot_start_hour) && (current_minute == slot_start_minute)){
+                Constants.current_slot_number++;
+                next_slot = Utilities.find_next_slot(app,slots);
+                slot_exploded = next_slot.get("next_slot_time").split(":");
+                slot_start_hour = Integer.parseInt(slot_exploded[0].trim());
+                slot_end_minute = Integer.parseInt(slot_exploded[2].trim());
+                slot_exploded = slot_exploded[1].split("-");
+                slot_start_minute = Integer.parseInt(slot_exploded[0].trim());
+                slot_end_hour = Integer.parseInt(slot_exploded[1].trim());
+
+                slot_start_minute = slot_start_minute - 10;
+                if(slot_start_minute < 0){
+                    slot_start_hour--;
+                    slot_start_minute = slot_start_minute + 60;
+                }
+                System.out.println("=============== inside");
+                System.out.print("current hour ");
+                System.out.println(current_hour);
+                System.out.print("current minute ");
+                System.out.println(current_minute);
+                System.out.println("---------------");
+                System.out.print("start hour ");
+                System.out.println(slot_start_hour);
+                System.out.print("start minute ");
+                System.out.println(slot_start_minute);
+                System.out.println("---------------");
+                System.out.print("end hour ");
+                System.out.println(slot_end_hour);
+                System.out.print("end minute ");
+                System.out.println(slot_end_minute);
+                System.out.println("---------------");
+
+            }
+
+
             cal.set(Calendar.HOUR_OF_DAY,slot_start_hour);
             cal.set(Calendar.MINUTE,slot_start_minute);
             cal.set(Calendar.DAY_OF_WEEK,Integer.parseInt(next_slot.get("day_number")));
@@ -147,9 +183,9 @@ public class IntentioService extends IntentService {
             alarm_intent = PendingIntent.getBroadcast(context, 0, intent,PendingIntent.FLAG_UPDATE_CURRENT);//FLAG_UPDATE_CURRENT
             alarm_manager.cancel(alarm_intent);
             if (android.os.Build.VERSION.SDK_INT < 19) {
-                alarm_manager.set(AlarmManager.RTC_WAKEUP, (cal.getTimeInMillis()), alarm_intent);
+                alarm_manager.set(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), alarm_intent);
             } else {
-                alarm_manager.setExact(AlarmManager.RTC_WAKEUP, (cal.getTimeInMillis()), alarm_intent);
+                alarm_manager.setExact(AlarmManager.RTC_WAKEUP, cal.getTimeInMillis(), alarm_intent);
             }
         }
 
