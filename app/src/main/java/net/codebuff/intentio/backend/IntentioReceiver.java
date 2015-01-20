@@ -21,6 +21,8 @@ public class IntentioReceiver extends BroadcastReceiver {
         } else if(action.equals(Constants.ACTION_NOTIFICATION)){
             NotificationCentre.notify(context, intent.getStringExtra(Constants.EXTRA_NOTIF_TXT), 0);
             IntentioService.startActionScheduleNextAlarm(context);
+        } else if(action.equals("android.intent.action.BOOT_COMPLETED")){
+            IntentioService.startActionScheduleNextAlarm(context);
         }
     }
 }

@@ -165,8 +165,8 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
         }
 
         if (id == R.id.action_alarm_demo) {
-            IntentioService.startActionScheduleNextAlarm(context);
-            //IntentioService.startActionAlarmDemo(context);
+            //IntentioService.startActionScheduleNextAlarm(context);
+            IntentioService.startActionAlarmDemo(context);
         }
 
         return super.onOptionsItemSelected(item);
@@ -210,6 +210,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 
 
         summary.setText(summary_text);
+        IntentioService.startActionScheduleNextAlarm(context);
     }
 
 }

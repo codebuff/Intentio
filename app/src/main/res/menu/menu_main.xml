@@ -10,10 +10,7 @@
         android:title="@string/title_activity_week"
         android:orderInCategory="100"
         app:showAsAction="never"/>
-    <item android:id="@+id/action_about"
-        android:title="@string/action_about"
-        android:orderInCategory="100"
-        app:showAsAction="never"/>
+
     <!--item android:id="@+id/action_help"
         android:title="help"
         android:orderInCategory="100"
@@ -23,7 +20,11 @@
         android:orderInCategory="100"
         app:showAsAction="never"/>
     <item android:id="@+id/action_alarm_demo"
-        android:title="Alarm Demo"
+        android:title="Alarm Demo (3s delay)"
+        android:orderInCategory="100"
+        app:showAsAction="never"/>
+    <item android:id="@+id/action_about"
+        android:title="@string/action_about"
         android:orderInCategory="100"
         app:showAsAction="never"/>
 </menu>

@@ -46,6 +46,7 @@
                 android:layout_marginBottom="@dimen/margin_small"
                 android:textStyle="bold" />
 
+
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,7 +54,22 @@
                 android:src="@drawable/s1"
                 android:cropToPadding="false"
                 android:nestedScrollingEnabled="false"
-                android:padding="2dp" />
+                android:padding="2dp"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Once your timetable is shown, download the excel file."
+
+                android:gravity="center_horizontal"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small"
+                android:textStyle="bold" />
+
+
 
             <ImageView
                 android:layout_width="fill_parent"
@@ -89,13 +105,17 @@
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@drawable/s3"
-                android:padding="2dp" />
+                android:padding="2dp"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small" />
             <ImageView
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:src="@drawable/s4"
-                android:padding="2dp" />
+                android:padding="2dp"
+                android:layout_marginTop="@dimen/margin_small"
+                android:layout_marginBottom="@dimen/margin_small" />
 
             <TextView
                 android:layout_width="fill_parent"

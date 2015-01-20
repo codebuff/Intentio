@@ -19,7 +19,7 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/string_description"
             android:id="@+id/description"
-            android:gravity="center_horizontal"
+            android:gravity="left"
             android:textStyle="italic"
             android:padding="@dimen/margin_small"
             android:layout_marginBottom="@dimen/margin_medium"

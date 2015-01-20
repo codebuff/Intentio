@@ -20,12 +20,10 @@
     <string name="first_run">Intentio Set Up</string>
     <string name="title_activity_week">Ascii dump(for coders)</string>
     <string name="string_description">Intentio automatically imports your schedule from the excel(.xls) file(obtained from ERP).\nDisplays it in more intuitive manner.\n
-    Shows your current class\n
-    (More features like notification will be added soon\n currently occupied with Ingenuity and MIC)</string>
+    Shows your current class.\n
+        Notifies you about the same 10 minutes before the class.\n
+    (More features will be added after Feb 02)</string>
     <string name="string_incorrect_file">Currently only files from ERP are supported as of now\n(the excel files which end with .xls extension)</string>
-    <string name="_centre_notification_title_template">" Centre": %1$s</string>
-    <string name="_centre_notification_placeholder_text_template">You said %1$s and lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam non enim magna. Morbi dictum, velit vel semper venenatis, magna odio volutpat velit, at ullamcorper nulla lacus sed turpis. Pellentesque vitae metus elit, nec tincidunt tellus. Integer sed nisl sem, ullamcorper ornare lacus. Duis ac mauris sed massa congue volutpat. Donec sed erat sit amet turpis viverra rhoncus sit amet nec magna. Donec lacinia ligula at libero volutpat volutpat nec nec tortor.</string>
-    <string name="action_share">Share</string>
-    <string name="action_reply">Reply</string>
+
 
 </resources>

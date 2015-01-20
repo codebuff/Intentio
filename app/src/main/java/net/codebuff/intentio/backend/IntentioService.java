@@ -84,6 +84,7 @@ public class IntentioService extends IntentService {
             AlarmManager alarm_manager;
             PendingIntent alarm_intent;
             Calendar cal = Calendar.getInstance(TimeZone.getDefault());
+            Calendar cal_current = Calendar.getInstance(TimeZone.getDefault());
             alarm_manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
             Intent intent = new Intent(context ,IntentioReceiver.class);
 
@@ -138,8 +139,19 @@ public class IntentioService extends IntentService {
                 slot_start_minute = slot_start_minute + 60;
             }
 
+            cal.set(Calendar.HOUR_OF_DAY,slot_start_hour);
+            cal.set(Calendar.MINUTE,slot_start_minute);
+            cal.set(Calendar.DAY_OF_WEEK,Integer.parseInt(next_slot.get("day_number")));
 
-            if((Integer.parseInt(next_slot.get("day_number")) == cal.get(Calendar.DAY_OF_WEEK)) && (current_hour == slot_start_hour) && (current_minute == slot_start_minute)){
+            long diff_in_time;
+            if(cal.getTimeInMillis() >= cal_current.getTimeInMillis()){
+                diff_in_time = cal.getTimeInMillis() - cal_current.getTimeInMillis();
+            }else {
+                diff_in_time =  cal_current.getTimeInMillis() - cal.getTimeInMillis() ;
+            }
+
+            diff_in_time = (diff_in_time/60 * 1000);
+            if(diff_in_time <= 10){
                 Constants.current_slot_number++;
                 next_slot = Utilities.find_next_slot(app,slots);
                 slot_exploded = next_slot.get("next_slot_time").split(":");
@@ -154,7 +166,7 @@ public class IntentioService extends IntentService {
                     slot_start_hour--;
                     slot_start_minute = slot_start_minute + 60;
                 }
-                System.out.println("=============== inside");
+               /* System.out.println("=============== inside");
                 System.out.print("current hour ");
                 System.out.println(current_hour);
                 System.out.print("current minute ");
@@ -169,7 +181,7 @@ public class IntentioService extends IntentService {
                 System.out.println(slot_end_hour);
                 System.out.print("end minute ");
                 System.out.println(slot_end_minute);
-                System.out.println("---------------");
+                System.out.println("---------------");*/
 
             }
 
@@ -200,7 +212,7 @@ public class IntentioService extends IntentService {
         alarm_manager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context ,IntentioReceiver.class);
         intent.setAction(Constants.ACTION_ALARM_DEMO);
-        intent.putExtra("alarm","alarm_demo");
+        intent.putExtra("alarm","alarm_demo , meant to check whether notification will be triggered on time or not.");
         alarm_intent = PendingIntent.getBroadcast(context, 0, intent,PendingIntent.FLAG_UPDATE_CURRENT);//FLAG_UPDATE_CURRENT
         alarm_manager.cancel(alarm_intent);
         if (android.os.Build.VERSION.SDK_INT < 19) {
