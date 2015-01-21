@@ -45,7 +45,7 @@ public class SettingsActivity extends PreferenceActivity {
      * as a master/detail two-pane view on tablets. When true, a single pane is
      * shown on tablets.
      */
-    private static final boolean ALWAYS_SIMPLE_PREFS = false;
+    private static final boolean ALWAYS_SIMPLE_PREFS = true;
 
 
     @Override
@@ -94,7 +94,7 @@ public class SettingsActivity extends PreferenceActivity {
 
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("application/vnd.ms-excel");
-                startActivityForResult(intent,0);
+                startActivityForResult(intent,Constants.SETTING_REQUEST_CODE_CHOOSE_FILE);
                 return false;
             }
         });
@@ -110,53 +110,12 @@ public class SettingsActivity extends PreferenceActivity {
         // Bind the summaries of EditText/List/Dialog/Ringtone preferences to
         // their values. When their values change, their summaries are updated
         // to reflect the new value, per the Android Design guidelines.
-       // bindPreferenceSummaryToValue(findPreference("example_text"));
-        //  bindPreferenceSummaryToValue(findPreference("example_list"));
         bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
         //   bindPreferenceSummaryToValue(findPreference("sync_frequency"));
        // bindPreferenceSummaryToValue(findPreference("xls_file_path"));
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
-        // if (requestCode == PICK_REQUEST_CODE) not needed since we are making only one request
-        PrefsManager app = new PrefsManager(getApplicationContext());
-        if (resultCode == RESULT_OK){
 
-            Uri uri = intent.getData();
-            String type = intent.getType();
-
-            Log.i("file choosen","Pick completed: "+ uri + " "+type);
-            if (uri != null){
-
-                String path = uri.toString();
-                findPreference("xls_file_path").setSummary(uri.getLastPathSegment());
-                try {
-                    Parser parser = new Parser(getApplicationContext(), uri);
-                    String xls_content = parser.parse_excel();
-                    if(!xls_content.equals("file not found")) {
-                        app.update_pref_settings("reset",false);
-                        //lets see if we need to start the main activity here or not.
-
-                        Constants.schedule_updated = true;
-                        Toast.makeText(getApplicationContext(), "File successfully parsed and data saved", Toast.LENGTH_LONG).show();
-                    }else{
-                        Toast.makeText(getApplicationContext(), "Incorrect file choosen", Toast.LENGTH_LONG).show();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                Log.i("path",path);
-                Log.i("getpath",uri.getPath());
-                Log.i("gethost",uri.getHost());
-                Log.i("last segment",uri.getLastPathSegment());
-                Log.i("encoded path",uri.getEncodedPath());
-
-            }
-        }
-        else Log.i("file not choosen","Back from pick with cancel status");
-        // }
-    }
 
     /**
      * {@inheritDoc}
@@ -207,7 +166,8 @@ public class SettingsActivity extends PreferenceActivity {
         @Override
         public boolean onPreferenceChange(Preference preference, Object value) {
             String stringValue = value.toString();
-
+           // System.out.print("stringValue   ");
+          //  System.out.println(stringValue);
             if (preference instanceof ListPreference) {
                 // For list preferences, look up the correct display value in
                 // the preference's 'entries' list.
@@ -230,6 +190,8 @@ public class SettingsActivity extends PreferenceActivity {
                 } else {
                     Ringtone ringtone = RingtoneManager.getRingtone(
                             preference.getContext(), Uri.parse(stringValue));
+                   // System.out.print("ringtone  ");
+                    //System.out.println(ringtone.getTitle(preference.getContext()));
 
                     if (ringtone == null) {
                         // Clear the summary if there was a lookup error.
@@ -272,61 +234,49 @@ public class SettingsActivity extends PreferenceActivity {
                         .getString(preference.getKey(), ""));
     }
 
-    /**
-     * This fragment shows general preferences only. It is used when the
-     * activity is showing a two-pane settings UI.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public static class GeneralPreferenceFragment extends PreferenceFragment {
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_general);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+       // System.out.print("requestCode  ");
+       // System.out.println(requestCode);
+        // if (requestCode == PICK_REQUEST_CODE) not needed since we are making only one request
+        if(requestCode == Constants.SETTING_REQUEST_CODE_CHOOSE_FILE){
+        PrefsManager app = new PrefsManager(getApplicationContext());
+        if (resultCode == RESULT_OK){
 
-            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-            // to their values. When their values change, their summaries are
-            // updated to reflect the new value, per the Android Design
-            // guidelines.
-            bindPreferenceSummaryToValue(findPreference("example_text"));
-            bindPreferenceSummaryToValue(findPreference("example_list"));
+            Uri uri = intent.getData();
+            String type = intent.getType();
+
+            Log.i("file choosen","Pick completed: "+ uri + " "+type);
+            if (uri != null){
+
+                String path = uri.toString();
+                findPreference("xls_file_path").setSummary(uri.getLastPathSegment());
+                try {
+                    Parser parser = new Parser(getApplicationContext(), uri);
+                    String xls_content = parser.parse_excel();
+                    if(!xls_content.equals("file not found")) {
+                        app.update_pref_settings("reset",false);
+                        //lets see if we need to start the main activity here or not.
+
+                        Constants.schedule_updated = true;
+                        Toast.makeText(getApplicationContext(), "File successfully parsed and data saved", Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Incorrect file choosen", Toast.LENGTH_LONG).show();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Log.i("path",path);
+                Log.i("getpath",uri.getPath());
+                Log.i("gethost",uri.getHost());
+                Log.i("last segment",uri.getLastPathSegment());
+                Log.i("encoded path",uri.getEncodedPath());
+
+            }
         }
-    }
-
-    /**
-     * This fragment shows notification preferences only. It is used when the
-     * activity is showing a two-pane settings UI.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public static class NotificationPreferenceFragment extends PreferenceFragment {
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_notification);
-
-            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-            // to their values. When their values change, their summaries are
-            // updated to reflect the new value, per the Android Design
-            // guidelines.
-            bindPreferenceSummaryToValue(findPreference("notifications_new_message_ringtone"));
-        }
-    }
-
-    /**
-     * This fragment shows data and sync preferences only. It is used when the
-     * activity is showing a two-pane settings UI.
-     */
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public static class DataSyncPreferenceFragment extends PreferenceFragment {
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            addPreferencesFromResource(R.xml.pref_data_sync);
-
-            // Bind the summaries of EditText/List/Dialog/Ringtone preferences
-            // to their values. When their values change, their summaries are
-            // updated to reflect the new value, per the Android Design
-            // guidelines.
-            bindPreferenceSummaryToValue(findPreference("sync_frequency"));
+        else Log.i("file not choosen","Back from pick with cancel status");
+         } else {
+            super.onActivityResult( requestCode, resultCode,  intent);
         }
     }
 }

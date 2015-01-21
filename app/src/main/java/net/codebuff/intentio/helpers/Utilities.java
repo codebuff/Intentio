@@ -180,9 +180,9 @@ public class Utilities {
                 day = get_day_name(day_number[0]);
                 next_slot_info = user.get_schedule_slot(day, slots[i].trim());
                 next_slot_info = next_slot_info.trim();
-                Log.e("slot", next_slot_info);
+                //Log.e("slot", next_slot_info);
                 if (!next_slot_info.equals(Constants.empty_slot)) {
-                    next_slot.put("day", "today");
+                    next_slot.put("day", "Today");
                     next_slot.put("next_slot_info", next_slot_info);
                     next_slot.put("next_slot_time", slots[i]);
                     next_slot.put("day_number", Integer.toString(day_number[0]));

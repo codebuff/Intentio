@@ -106,7 +106,7 @@ public class PrefsManager {
 
     public String get_saved_settings(String key) {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
-        return prefs.getString(key, "No file choosen");
+        return prefs.getString(key, "");
     }
 
 

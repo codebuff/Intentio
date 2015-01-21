@@ -33,9 +33,7 @@
             android:id="@+id/daily_schedule_container"
             android:layout_height="fill_parent"
 
-            android:layout_centerHorizontal="true"
             android:orientation="vertical"
-            android:gravity="center_horizontal"
             android:showDividers="middle"
             android:paddingTop="@dimen/margin_medium"
             android:paddingBottom="@dimen/margin_medium"

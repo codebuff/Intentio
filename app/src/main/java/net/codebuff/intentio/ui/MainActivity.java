@@ -76,6 +76,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 
     @Override
     protected void onStart() {
+      //  System.out.println("onstart");
         super.onStart();
         context = getApplicationContext();
         app = new PrefsManager(context);
@@ -97,8 +98,9 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 
     @Override
     protected void onResume() {
+        //System.out.println("onresume");
         super.onResume();
-        context = getApplicationContext();
+       /* context = getApplicationContext();
         app = new PrefsManager(context);
         if(app.first_run()){
             app.update_pref_settings("xls_file_path","No file choosen");
@@ -107,7 +109,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
             finish();
         }
 
-        summarize();
+        summarize();*/
     }
 
     @Override
@@ -206,7 +208,7 @@ public class MainActivity extends ActionBarActivity implements ActionBar.OnNavig
 
         next_slot = Utilities.find_next_slot(app,slots);
 
-        summary_text = summary_text + "Next : " + next_slot.get("day") + " at " + next_slot.get("next_slot_time")+ "\n" +  next_slot.get("next_slot_info");
+        summary_text = summary_text + "Next : " + next_slot.get("day").substring(0,1).toUpperCase() + next_slot.get("day").substring(1) + " at " + next_slot.get("next_slot_time")  + "\n" +  next_slot.get("next_slot_info").substring(0,1).toUpperCase() + next_slot.get("next_slot_info").substring(1);
 
 
         summary.setText(summary_text);

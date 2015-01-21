@@ -5,7 +5,9 @@
     <CheckBoxPreference
         android:key="notifications_new_message"
         android:title="@string/pref_title_new_message_notifications"
-        android:defaultValue="true" />
+        android:defaultValue="true"
+        android:summaryOn="You will receive notifications 10 min before class"
+        android:summaryOff="Notification off"/>
 
     <!-- Allows the user to choose a ringtone in the 'notification' category. -->
     <!-- NOTE: This preference will be enabled only when the checkbox above is checked. -->
@@ -18,10 +20,10 @@
         android:defaultValue="content://settings/system/notification_sound" />
 
     <!-- NOTE: This preference will be enabled only when the checkbox above is checked. -->
-    <CheckBoxPreference
+    <!--CheckBoxPreference
         android:dependency="notifications_new_message"
         android:key="notifications_new_message_vibrate"
         android:title="@string/pref_title_vibrate"
-        android:defaultValue="true" />
+        android:defaultValue="true" /-->
 
 </PreferenceScreen>

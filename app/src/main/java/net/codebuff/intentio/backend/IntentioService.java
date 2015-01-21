@@ -150,7 +150,7 @@ public class IntentioService extends IntentService {
                 diff_in_time =  cal_current.getTimeInMillis() - cal.getTimeInMillis() ;
             }
 
-            diff_in_time = (diff_in_time/60 * 1000);
+            diff_in_time = (diff_in_time/(60 * 1000));
             if(diff_in_time <= 10){
                 Constants.current_slot_number++;
                 next_slot = Utilities.find_next_slot(app,slots);

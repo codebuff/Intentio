@@ -14,6 +14,7 @@ import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 
 import net.codebuff.intentio.R;
+import net.codebuff.intentio.preferences.PrefsManager;
 
 /**
  * Helper class for showing and canceling  centre
@@ -49,6 +50,8 @@ public class NotificationCentre {
                               final String notification, final int number) {
         final Resources res = context.getResources();
 
+       PrefsManager app =  new PrefsManager(context);
+
         // This image is used as the notification's large icon (thumbnail).
         // TODO: Remove this if your notification has no relevant thumbnail.
         final Bitmap picture = BitmapFactory.decodeResource(res, R.drawable.ic_launcher);
@@ -62,7 +65,11 @@ public class NotificationCentre {
 
                 // Set appropriate defaults for the notification light, sound,
                 // and vibration.
-                .setDefaults(Notification.DEFAULT_ALL)
+                .setSound(Uri.parse(app.get_saved_settings("notifications_new_message_ringtone")))
+                .setDefaults(Notification.DEFAULT_VIBRATE)
+                .setDefaults(Notification.DEFAULT_LIGHTS)
+                //.setDefaults(Notification.DEFAULT_ALL)
+                       // .setDefaults(Notification.)
 
                         // Set required fields, including the small icon, the
                         // notification title, and text.
@@ -133,7 +140,9 @@ public class NotificationCentre {
                         null)*/
 
                         // Automatically dismiss the notification when it is touched.
-                .setAutoCancel(true);
+                .setAutoCancel(true)
+
+                ;
 
         notify(context, builder.build());
     }

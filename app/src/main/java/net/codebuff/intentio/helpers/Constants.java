@@ -20,4 +20,9 @@ public class Constants {
     public static final String EXTRA_ALARM_HOUR = "net.codebuff.intentio.backend.extra.alarm.hour";
     public static final String EXTRA_ALARM_MINUTE = "net.codebuff.intentio.backend.extra.alarm.min";
 
+
+    public static final int SETTING_REQUEST_CODE_CHOOSE_FILE = 1561;
+    public static final int SETTING_REQUEST_CODE_CHOOSE_RINGTONE = 1562;
+
+
 }

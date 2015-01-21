@@ -88,7 +88,7 @@ public class Parser {
         String content = "";
 
         Calendar calendar = Calendar.getInstance();
-        Log.e("day", calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()));
+       // Log.e("day", calendar.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG, Locale.getDefault()));
         // find and open the xl file.
         open_file();
 
