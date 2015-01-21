@@ -24,6 +24,19 @@
             android:padding="@dimen/margin_small"
             android:layout_marginBottom="@dimen/margin_medium"
             android:layout_margin="@dimen/margin_medium" />
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="This is a free software and no guarantee is provided by the author"
+            android:id="@+id/Guarantee"
+            android:gravity="left"
+            android:textStyle="italic"
+            android:padding="@dimen/margin_small"
+            android:layout_marginBottom="@dimen/margin_medium"
+            android:layout_margin="@dimen/margin_medium"
+            android:capitalize="sentences"
+            android:textColor="@color/grab_attention" />
 
         <TextView
             android:layout_width="fill_parent"
