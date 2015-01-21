@@ -3,7 +3,6 @@
     package="net.codebuff.intentio" >
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="Android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
@@ -38,14 +37,16 @@
         <service
             android:name=".backend.IntentioService"
             android:exported="false" >
+
         </service>
 
         <receiver
-            android:name=".backend.IntentioReceiver"
+            android:name="net.codebuff.intentio.backend.IntentioReceiver"
             android:enabled="true"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"></action>
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
     </application>

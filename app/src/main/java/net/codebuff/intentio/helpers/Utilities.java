@@ -148,8 +148,14 @@ public class Utilities {
             }
         }
 
+        /*if((current_hour >= slot_start_hour) && (current_minute >= slot_start_minute) && (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) ){
+            Constants.week_finished = true;
+        }*/
+
         if((current_hour >= slot_end_hour) && (current_minute >= slot_end_minute) ){
             Constants.current_time_is_past_last_slot = true;
+
+
         }
 
         return slot;
@@ -189,6 +195,11 @@ public class Utilities {
                     return next_slot;
                 }
             }
+
+            if((calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY)){
+                Constants.week_finished = true;
+            }
+
         }
         for(int j = 1;j < day_number.length;j++){
             day = get_day_name(day_number[j]);

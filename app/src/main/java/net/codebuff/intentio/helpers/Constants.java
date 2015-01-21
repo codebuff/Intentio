@@ -10,10 +10,12 @@ public class Constants {
     public static int current_slot_number = -1;
     public static boolean current_time_is_past_last_slot = false;
     public static boolean setup_help_shown = false;
+    public static boolean week_finished = false;
 
     public static final String ACTION_NOTIFICATION = "net.codebuff.intentio.backend.action.Notification";
     public static final String ACTION_SCHEDULE_NEXT_ALARM = "net.codebuff.intentio.backend.action.ScheduleNextAlarm";
     public static final String ACTION_ALARM_DEMO = "net.codebuff.intentio.backend.action.alarm_demo";
+    public static final String ACTION_SCHEDULE_FIRST_ALARM_OF_WEEK = "net.codebuff.intentio.backend.action.alarm_01_of_week";
 
 
     public static final String EXTRA_NOTIF_TXT = "net.codebuff.intentio.backend.extra.NOTIF_TXT";
