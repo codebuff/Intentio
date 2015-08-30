@@ -5,7 +5,7 @@
     <string name="title_activity_main">Intentio</string>
     <string name="title_activity_first_run">Intentio</string>
 
-    <!-- strings for main activitu spinner -->
+    <!-- strings for main activity spinner -->
     <string name="title_day1">Sunday\'s Schedule</string>
     <string name="title_day2">Monday\'s Schedule</string>
     <string name="title_day3">Tuesday\'s Schedule</string>
@@ -17,13 +17,12 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="action_about">About</string>
-    <string name="first_run">Intentio Set Up</string>
+    <string name="first_run">Setup Intentio...</string>
     <string name="title_activity_week">Ascii dump(for coders)</string>
     <string name="string_description">Intentio automatically imports your schedule from the excel(.xls) file(obtained from ERP).\nDisplays it in more intuitive manner.\n
     Calculates and shows your current and next class.\n
-        Notifies you about the next class 10 minutes before the class.\n
-    (More features will be added after Feb 05)</string>
-    <string name="string_incorrect_file">Currently only files from ERP are supported as of now\n(the excel files which end with .xls extension)</string>
+        Notifies you about the next class 10 minutes before the class.\n</string>
+    <string name="string_incorrect_file">Currently only files from ERP are supported\n(the legacy excel files.)</string>
 
 
 </resources>

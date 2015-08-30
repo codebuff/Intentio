@@ -38,7 +38,8 @@
             android:paddingTop="@dimen/margin_medium"
             android:paddingBottom="@dimen/margin_medium"
             android:paddingLeft="@dimen/margin_medium"
-            android:paddingRight="@dimen/margin_medium">
+            android:paddingRight="@dimen/margin_medium"
+            android:background="@color/background_floating_material_light">
 
         </LinearLayout>
     </ScrollView>

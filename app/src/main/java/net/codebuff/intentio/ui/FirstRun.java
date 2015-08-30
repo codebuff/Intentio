@@ -135,10 +135,13 @@ public class FirstRun extends ActionBarActivity {
                     if (!xls_content.equals("file not found")) {
                         txt_main.setText("Intentio Setup Complete");
                         txt_main.setTextColor(getResources().getColor(R.color.grab_attention));
-                        txt.setText("File parsed successfully and data saved, Click Done to finish setup\n (follwoing raw data is displayed just for satisfying coder's itch and has no other purpose whatsoever)");
+                        /*txt.setText("File parsed successfully and data saved, Click Done to finish setup\n (follwoing raw data is displayed just for satisfying coder's itch and has no other purpose whatsoever)");
                         parser_dump.setText(xls_content);
-                        choose_file.setVisibility(View.GONE);
+                        choose_file.setVisibility(View.GONE);*/
                         app.update_pref_settings("reset", false);
+                        Toast.makeText(getApplicationContext(), "Setup Finished", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                        finish();
                     } else {
                         DialogFragment incorrect_file = new IncorrectFileDialog();
                         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();

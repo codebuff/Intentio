@@ -5,11 +5,11 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:elevation="120dp"
-    card_view:cardCornerRadius="8dp"
+    card_view:cardCornerRadius="4dp"
     android:layout_gravity="center_horizontal"
-    android:elegantTextHeight="false"
+    android:elegantTextHeight="true"
     android:layout_margin="@dimen/margin_small"
-    android:background="@color/cardview_dark_background">
+    >
 
 
     <RelativeLayout
@@ -20,12 +20,12 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textAppearance="?android:attr/textAppearanceMediumInverse"
             android:text="Slot_time"
             android:id="@+id/slot_time"
             android:elevation="150dp"
             android:gravity="center_horizontal"
-            android:textStyle="bold"
+            android:textStyle="italic"
             android:textColor="@color/primary_text_default_material_light" />
 
 
@@ -42,7 +42,6 @@
             android:layout_below="@+id/slot_time"
             android:layout_marginLeft="@dimen/margin_medium"
             android:layout_marginRight="@dimen/margin_medium"
-            android:textStyle="italic"
             android:textColor="@color/primary_text_default_material_light" />
     </RelativeLayout>
     </android.support.v7.widget.CardView>
