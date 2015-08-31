@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
@@ -22,7 +23,7 @@ import net.codebuff.intentio.preferences.SettingsActivity;
 import java.util.Calendar;
 import java.util.HashMap;
 
-public class MainActivity extends ActionBarActivity implements ActionBar.OnNavigationListener {
+public class MainActivity extends AppCompatActivity implements ActionBar.OnNavigationListener {
     Context context;
     PrefsManager app ;
     TextView summary;

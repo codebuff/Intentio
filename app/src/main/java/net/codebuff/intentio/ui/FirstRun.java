@@ -6,6 +6,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
@@ -20,7 +21,7 @@ import net.codebuff.intentio.preferences.PrefsManager;
 
 import java.io.IOException;
 
-public class FirstRun extends ActionBarActivity {
+public class FirstRun extends AppCompatActivity {
 
     private TextView txt_main;
     private TextView parser_dump;
