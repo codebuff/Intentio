@@ -22,7 +22,7 @@
     <string name="string_description">Intentio automatically imports your schedule from the excel(.xls) file(obtained from ERP).\nDisplays it in more intuitive manner.\n
     Calculates and shows your current and next class.\n
         Notifies you about the next class 10 minutes before the class.\n</string>
-    <string name="string_incorrect_file">Currently only files from ERP are supported\n(the legacy excel files.)</string>
+    <string name="string_incorrect_file">Currently only files from ERP are supported\n(legacy excel (.xls) files.)</string>
 
 
 </resources>

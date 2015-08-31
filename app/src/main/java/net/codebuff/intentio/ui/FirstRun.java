@@ -1,5 +1,6 @@
 package net.codebuff.intentio.ui;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.app.DialogFragment;
@@ -10,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -125,9 +127,7 @@ public class FirstRun extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
 
             Uri uri = intent.getData();
-            String type = intent.getType();
 
-            Log.i("file choosen", "Pick completed: " + uri + " " + type);
             if (uri != null) {
                 String path = uri.toString();
                 try {
@@ -152,11 +152,11 @@ public class FirstRun extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-                Log.i("path", path);
+               /* Log.i("path", path);
                 Log.i("getpath", uri.getPath());
                 Log.i("gethost", uri.getHost());
                 Log.i("last segment", uri.getLastPathSegment());
-                Log.i("encoded path", uri.getEncodedPath());
+                Log.i("encoded path", uri.getEncodedPath());*/
 
             }
         } else Log.i("file not chosen", "Back from pick with cancel status");

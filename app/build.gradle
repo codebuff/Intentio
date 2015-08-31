@@ -7,8 +7,9 @@ android {
         applicationId "net.codebuff.intentio"
         minSdkVersion 14
         targetSdkVersion 22
-        versionCode 1
-        versionName '1.05-dev'
+        versionCode 2
+        versionName '1.06 - beta'
+        multiDexEnabled true
     }
     buildTypes {
         release {
