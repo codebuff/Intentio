@@ -3,4 +3,3 @@ It imports (parses) the entire week’s timetable from the excel file (provided 
 Displays the daily schedule in more intuitive manner.  
 It calculates and displays next class, also provides notification 10 minutes before the class.  
 **Play Store [ Link ](https://play.google.com/store/apps/details?id=net.codebuff.intentio)**.  
-**Code availabe on [ Github ](https://github.com/codebuff/Intentio)**
