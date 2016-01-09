@@ -25,7 +25,7 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity implements ActionBar.OnNavigationListener {
     Context context;
-    PrefsManager app ;
+    PrefsManager app;
     TextView summary;
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -39,10 +39,10 @@ public class MainActivity extends AppCompatActivity implements ActionBar.OnNavig
         PreferenceManager.setDefaultValues(this, R.xml.pref_general, false); // saving the default preferences for the first time
         context = getApplicationContext();
         app = new PrefsManager(context);
-        if(app.first_run()) {
+        if (app.first_run()) {
             // open the parser activity
             if (savedInstanceState == null) {
-                app.update_pref_settings("xls_file_path","No file choosen");
+                app.update_pref_settings("xls_file_path", "No file choosen");
                 startActivity(new Intent(this, FirstRun.class));
                 finish();
             }
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.OnNavig
         setContentView(R.layout.activity_main);
 
         // Set up the action bar to show a dropdown list.
-       final ActionBar  actionBar = getSupportActionBar();
+        final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements ActionBar.OnNavig
                 // Specify a SpinnerAdapter to populate the dropdown list.
                 new ArrayAdapter<String>(
                         actionBar.getThemedContext(),
-                        android.R.layout.simple_list_item_1 ,
+                        android.R.layout.simple_list_item_1,
                         android.R.id.text1,
                         new String[]{
                                 getString(R.string.title_day1),
@@ -72,22 +72,46 @@ public class MainActivity extends AppCompatActivity implements ActionBar.OnNavig
                                 getString(R.string.title_day7)
                         }),
                 this);
-        actionBar.setSelectedNavigationItem(Utilities.get_day_number()-1);
+        actionBar.setSelectedNavigationItem(Utilities.get_day_number() - 1);
+
+        findViewById(R.id.scroll).setOnTouchListener(new OnSwipeTouchListener(context) {
+            @Override
+            public void onSwipeLeft() {
+                if (Constants.current_shown_day == 6) {
+                    Constants.current_shown_day = 0;
+                    actionBar.setSelectedNavigationItem(Constants.current_shown_day);
+                } else {
+                    actionBar.setSelectedNavigationItem(++Constants.current_shown_day);
+                }
+            }
+
+            @Override
+            public void onSwipeRight() {
+                if (Constants.current_shown_day == 0) {
+                    Constants.current_shown_day = 6;
+                    actionBar.setSelectedNavigationItem(Constants.current_shown_day);
+                } else {
+                    actionBar.setSelectedNavigationItem(--Constants.current_shown_day);
+                }
+            }
+        });
     }
 
     @Override
     protected void onStart() {
-      //  System.out.println("onstart");
+        //  System.out.println("onstart");
         super.onStart();
+        // java indexes day with 1, actionbar list indexed with 0 , we follow 0
+        Constants.current_shown_day = Utilities.get_day_number() - 1;
         context = getApplicationContext();
         app = new PrefsManager(context);
-        if(app.first_run()){
-            app.update_pref_settings("xls_file_path","No file choosen");
+        if (app.first_run()) {
+            app.update_pref_settings("xls_file_path", "No file choosen");
             // open the parser activity
-            startActivity(new Intent(this , FirstRun.class));
+            startActivity(new Intent(this, FirstRun.class));
             finish();
         }
-        if(Constants.schedule_updated){
+        if (Constants.schedule_updated) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.daily_schedule_container, new DailySchedule().newInstance(Utilities.get_day_number()))
                     .commit();
@@ -146,25 +170,20 @@ public class MainActivity extends AppCompatActivity implements ActionBar.OnNavig
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            startActivity(new Intent(this,SettingsActivity.class));
+            startActivity(new Intent(this, SettingsActivity.class));
             return true;
         }
         if (id == R.id.action_week) {
-            startActivity(new Intent(this,Week.class));
+            startActivity(new Intent(this, Week.class));
             return true;
         }
         if (id == R.id.action_about) {
             DialogFragment about = new About();
-            about.show(getSupportFragmentManager(),"About");
+            about.show(getSupportFragmentManager(), "About");
             return true;
         }
-       /* if (id == R.id.action_help) {
-            DialogFragment help = new SetupHelp();
-            help.show(getSupportFragmentManager(),"About");
-            return true;
-        }*/
         if (id == R.id.action_notif_demo) {
-            IntentioService.startActionNotification(context,summary.getText().toString());
+            IntentioService.startActionNotification(context, summary.getText().toString());
         }
 
         if (id == R.id.action_alarm_demo) {
@@ -180,36 +199,36 @@ public class MainActivity extends AppCompatActivity implements ActionBar.OnNavig
         // When the given dropdown item is selected, show its contents in the
         // container view.
         getSupportFragmentManager().beginTransaction()
-               .replace(R.id.daily_schedule_container, new DailySchedule().newInstance(day_number + 1))
-               .commit();
+                .replace(R.id.daily_schedule_container, new DailySchedule().newInstance(++day_number))
+                .commit();
         return true;
     }
 
-    public void summarize(){
+    public void summarize() {
         String summary_text = "";
-        summary =(TextView)findViewById(R.id.summary);
+        summary = (TextView) findViewById(R.id.summary);
         String current_slot_time;
         String current_slot_info;
         HashMap<String, String> next_slot = new HashMap<String, String>();
-        Calendar  calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
 
-        String sl = app.get_slots().replace("[","");
-        sl = sl.replace("]","");
+        String sl = app.get_slots().replace("[", "");
+        sl = sl.replace("]", "");
         String[] slots = sl.split(",");
         slots = Utilities.sort_slots(slots);
 
         current_slot_time = Utilities.find_current_slot(slots);
 
-        if(!current_slot_time.equals("invalid")) {
+        if (!current_slot_time.equals("invalid")) {
             current_slot_info = app.get_schedule_slot(Utilities.get_day_name(calendar.get(Calendar.DAY_OF_WEEK)), current_slot_time.trim());
             if (!current_slot_info.equals(Constants.empty_slot)) {
                 summary_text = "Now : " + current_slot_info + "\n";
             }
         }
 
-        next_slot = Utilities.find_next_slot(app,slots);
+        next_slot = Utilities.find_next_slot(app, slots);
 
-        summary_text = summary_text + "Next : " + next_slot.get("day").substring(0,1).toUpperCase() + next_slot.get("day").substring(1) + " at " + next_slot.get("next_slot_time")  + "\n" +  next_slot.get("next_slot_info").substring(0,1).toUpperCase() + next_slot.get("next_slot_info").substring(1);
+        summary_text = summary_text + "Next : " + next_slot.get("day").substring(0, 1).toUpperCase() + next_slot.get("day").substring(1) + " at " + next_slot.get("next_slot_time") + "\n" + next_slot.get("next_slot_info").substring(0, 1).toUpperCase() + next_slot.get("next_slot_info").substring(1);
 
 
         summary.setText(summary_text);

@@ -67,6 +67,7 @@ public class Utilities {
 
     public static int get_day_number(){
         Calendar calendar = Calendar.getInstance();
+        //System.out.println(calendar.get(Calendar.DAY_OF_WEEK));
         return calendar.get(Calendar.DAY_OF_WEEK);
     }
 

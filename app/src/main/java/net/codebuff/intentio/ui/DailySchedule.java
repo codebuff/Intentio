@@ -17,7 +17,6 @@ import net.codebuff.intentio.preferences.PrefsManager;
  * A placeholder fragment containing a simple view.
  */
 public class DailySchedule extends Fragment {
-
     /**
      * The fragment argument representing the section number for this
      * fragment.
@@ -38,8 +37,6 @@ public class DailySchedule extends Fragment {
 
     public DailySchedule() {
     }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

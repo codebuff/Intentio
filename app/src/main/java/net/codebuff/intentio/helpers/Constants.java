@@ -11,6 +11,7 @@ public class Constants {
     public static boolean current_time_is_past_last_slot = false;
     public static boolean setup_help_shown = false;
     public static boolean week_finished = false;
+    public static int current_shown_day;
 
     public static final String ACTION_NOTIFICATION = "net.codebuff.intentio.backend.action.Notification";
     public static final String ACTION_SCHEDULE_NEXT_ALARM = "net.codebuff.intentio.backend.action.ScheduleNextAlarm";

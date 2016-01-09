@@ -58,7 +58,7 @@ public class NotificationCentre {
 
 
         final String ticker = "Attention! Class ahead";
-        final String title = "Go 90 or get debarred :p";
+        final String title = "Class Ahead!";
         final String text = notification;
 
         final NotificationCompat.Builder builder = new NotificationCompat.Builder(context)
